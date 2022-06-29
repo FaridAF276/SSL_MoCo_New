@@ -1,6 +1,6 @@
 #!/bin/bash
 #shell script
-git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x prepare_pip.sh && ./prepare_pip.sh
+#git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x prepare_pip.sh && ./prepare_pip.sh
 pip install pandas matplotlib tensorboard gdown gdrive
 #Download and install gdrive
 wget https://docs.google.com/uc?id=0B3X9GlR6EmbnWksyTEtCM0VfaFE&export=download
