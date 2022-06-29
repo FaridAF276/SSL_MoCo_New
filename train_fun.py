@@ -22,7 +22,7 @@ class TrainUtils:
         self.memory_loader = memory_loader
         self.test_loader = test_loader
         self.writer = SummaryWriter() #auto creates runs/Apr07_18-01-17_d1007 DIR
-        self.path = os.path.join(self.args.results_dir,self.writer.log_dir)
+        self.path = os.path.join(self.args.results_dir)
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
@@ -177,6 +177,6 @@ class TrainUtils:
             train_loss = self.train_one_epoch(self.model, self.train_loader, self.optimizer, epoch, self.args)
             test_acc_1 = self.test(self.model.encoder_q, self.memory_loader, self.test_loader, epoch, self.args)
             logging.info("Epoch: {}\ttrain_loss: {:.3f}\ttest_Acc@1: {:.3f}".format(epoch,train_loss,test_acc_1))
-            torch.save({'epoch': epoch, 'state_dict': self.model.state_dict(), 'optimizer' : self.optimizer.state_dict(),}, os.path.join(self.args.results_dir, self.writer.log_dir,'model.pth'))
+            torch.save({'epoch': epoch, 'state_dict': self.model.state_dict(), 'optimizer' : self.optimizer.state_dict(),}, os.path.join(self.args.results_dir,'model.pth'))
         
         logging.info(f"Model, metadata and training log has been saved at {self.path}.")

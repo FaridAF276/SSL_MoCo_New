@@ -14,5 +14,5 @@ time python linear_eval.py \
 --epochs 2 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "cifar10" \
---results-dir "MoCo_eval_checkpoints/" \
+--results_dir "MoCo_eval_checkpoints/" \
 -pt-ssl
