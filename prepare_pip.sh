@@ -1,12 +1,10 @@
 #!/bin/bash
 #shell script
-git clone https://github.com/FaridAF276/SSL_MoCo_New.git
-cd SSL_MoCo_New
 pip install pandas matplotlib tensorboard gdown gdrive
-gdown --fuzzy https://drive.google.com/file/d/1Y9TGam8gf_SnmdMIicaDVXJF9TIDo7ke/view?usp=sharing
+#Create directories for train et eval models
 mkdir MoCo_train_checkpoints
 mkdir MoCo_eval_checkpoints
-
+#Launch training process
 time python pre_train.py \
 --epochs 2 \
 --batch-size 512 \
@@ -16,4 +14,5 @@ time python linear_eval.py \
 --epochs 2 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "cifar10" \
+--results-dir "MoCo_eval_checkpoints/" \
 -pt-ssl
