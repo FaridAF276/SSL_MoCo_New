@@ -15,44 +15,46 @@ mkdir MoCo_train_checkpoints
 mkdir MoCo_eval_checkpoints
 
 # #Launch training process
-# time python pre_train.py \
-# --epochs 200 \
-# --batch-size 512 \
-# --results-dir "MoCo_train_checkpoints/" \
-# --dataset "cifar10"
-# touch MoCo_train_checkpoints/linear_eval.log
-# time python linear_eval.py \
-# --epochs 200 \
-# --model-dir "MoCo_train_checkpoints/" \
-# --dataset-ft "cifar10" \
-# --results_dir "MoCo_eval_checkpoints/" \
-# -pt-ssl
-
-# #Zip the result and upload them to drive
-# zip -r cifar10_pretext.zip MoCo_train_checkpoints
-# zip -r cifar10_dowstr.zip MoCo_eval_checkpoints
-# ./gdrive upload cifar10_pretext.zip
-# ./gdrive upload cifar10_dowstr.zip
-# rm -r MoCo_train_checkpoints
-# rm -r MoCo_eval_checkpoints
-#Lets go that again
 time python pre_train.py \
 --epochs 200 \
 --batch-size 512 \
 --results-dir "MoCo_train_checkpoints/" \
---dataset "stl10"
-touch MoCo_eval_checkpoints/linear_eval.log
+--dataset "cifar10"
+touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 200 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "stl10" \
+--dataset-ft "cifar10" \
 --results_dir "MoCo_eval_checkpoints/" \
 -pt-ssl
-zip -r stl10_pretext.zip MoCo_train_checkpoints
-zip -r stl10_dowstr.zip MoCo_eval_checkpoints
-./gdrive upload stl10_pretext.zip
-./gdrive upload stl10_dowstr.zip
+
+# #Zip the result and upload them to drive
+zip -r cifar10_pretext.zip MoCo_train_checkpoints
+zip -r cifar10_dowstr.zip MoCo_eval_checkpoints
+./gdrive upload cifar10_pretext.zip
+./gdrive upload cifar10_dowstr.zip
 rm -r MoCo_train_checkpoints
 rm -r MoCo_eval_checkpoints
-cd ~
-rm -r SSL_MoCo_New
+
+#Lets do that again!
+
+# time python pre_train.py \
+# --epochs 200 \
+# --batch-size 512 \
+# --results-dir "MoCo_train_checkpoints/" \
+# --dataset "stl10"
+# touch MoCo_eval_checkpoints/linear_eval.log
+# time python linear_eval.py \
+# --epochs 200 \
+# --model-dir "MoCo_train_checkpoints/" \
+# --dataset-ft "stl10" \
+# --results_dir "MoCo_eval_checkpoints/" \
+# -pt-ssl
+# zip -r stl10_pretext.zip MoCo_train_checkpoints
+# zip -r stl10_dowstr.zip MoCo_eval_checkpoints
+# ./gdrive upload stl10_pretext.zip
+# ./gdrive upload stl10_dowstr.zip
+# rm -r MoCo_train_checkpoints
+# rm -r MoCo_eval_checkpoints
+# cd ~
+# rm -r SSL_MoCo_New
