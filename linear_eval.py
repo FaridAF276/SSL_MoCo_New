@@ -11,6 +11,7 @@ from torchvision import datasets
 import argparse
 import logging
 from moco_wrapper import ModelMoCo
+from moco_dataset_generator import FolderPair
 import sys
 
 parser = argparse.ArgumentParser(description='PyTorch MoCo Linear Eval')
@@ -21,7 +22,8 @@ parser.add_argument('--model-dir', default='', type=str, metavar='PATH', help='p
 parser.add_argument('--epochs', '-e', default=100, type=int, metavar='N', help='number of epochs')
 parser.add_argument('--dataset-ft', type=str, help='name of the dataset to fine tune the pretrained model on')
 parser.add_argument('--results_dir', type=str, help='name of the path to save the fine tuned model on')
-
+parser.add_argument('--batch_size',default=256, type=int, help='Number of images in the each batch')
+args = parser.parse_args() 
 
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
@@ -39,7 +41,7 @@ def accuracy(output, target, topk=(1,)):
             res.append(correct_k.mul_(100.0 / batch_size))
         return res
 
-def get_stl10_data_loaders(download, shuffle=False, batch_size=256):
+def get_stl10_data_loaders(download, shuffle=False, batch_size=args.batch_size):
     train_dataset = datasets.STL10('./data', split='train', download=download,
                                     transform=transforms.ToTensor())
 
@@ -53,7 +55,7 @@ def get_stl10_data_loaders(download, shuffle=False, batch_size=256):
                             num_workers=10, drop_last=False, shuffle=shuffle)
     return train_loader, test_loader
 
-def get_cifar10_data_loaders(download, shuffle=False, batch_size=256):
+def get_cifar10_data_loaders(download, shuffle=False, batch_size=args.batch_size):
     train_dataset = datasets.CIFAR10('./data', train=True, download=download,
                                     transform=transforms.ToTensor())
 
@@ -62,6 +64,17 @@ def get_cifar10_data_loaders(download, shuffle=False, batch_size=256):
 
     test_dataset = datasets.CIFAR10('./data', train=False, download=download,
                                     transform=transforms.ToTensor())
+
+    test_loader = DataLoader(test_dataset, batch_size=2*batch_size,
+                            num_workers=10, drop_last=False, shuffle=shuffle)
+    return train_loader, test_loader
+def get_folder_data_loaders(shuffle=False, batch_size=args.batch_size, train_root='', test_root=''):
+    train_dataset = FolderPair(train_root, transforms.ToTensor())
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size,
+                            num_workers=0, drop_last=False, shuffle=shuffle)
+
+    test_dataset = datasets.ImageFolder(root= test_root, transform=transforms.ToTensor)
 
     test_loader = DataLoader(test_dataset, batch_size=2*batch_size,
                             num_workers=10, drop_last=False, shuffle=shuffle)
@@ -138,6 +151,8 @@ def main():
                 train_loader, test_loader = get_cifar10_data_loaders(download=True)
             elif(args.dataset_ft =='stl10'):
                 train_loader, test_loader = get_stl10_data_loaders(download=True)
+            elif(args.dataset_ft =='stl10'):
+                train_loader, test_loader = get_folder_data_loaders(batch_size=args.batch_size)
         else:
             logging.info(f'Fine tune on Dataset: {config["dataset"]}')
             print(f'Fine tune on Dataset: {config["dataset"]}')
@@ -157,7 +172,6 @@ def main():
         assert len(parameters) == 2  # fc.weight, fc.bias
 
     optimizer = torch.optim.Adam(model.parameters(), lr=3e-4, weight_decay=0.0008)
-    #optimizer.load_state_dict(checkpoint['optimizer'])
     criterion = torch.nn.CrossEntropyLoss().to(device)
 
 

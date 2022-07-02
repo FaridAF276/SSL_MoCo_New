@@ -1,11 +1,23 @@
 from gauss_blur import GaussianBlur
 from generate_crops import TwoCropsTransform
 import torchvision
+from PIL import Image
 from torchvision import transforms
 import torchvision.datasets as datasets
 from torch.utils.data import DataLoader
 #from exceptions.exceptions import InvalidDatasetSelection
-
+class FolderPair(datasets.ImageFolder):
+    def __getitem__(self, index):
+        # img = self.data[index]
+        path = self.imgs[index][0]
+        img = Image.open(path)
+        #Since some images are grayscale and others and RGB we convert grayscale images to RGB
+        if img.mode is not "RGB":
+          img = img.convert('RGB')
+        if self.transform is not None:
+            im_1 = self.transform(img)
+            im_2 = self.transform(img)
+        return im_1, im_2
 class MocoDatasetGenerator:
     def __init__(self, root_folder='./data'):
         self.root_folder = root_folder
@@ -40,13 +52,13 @@ class MocoDatasetGenerator:
         data_transform = transforms.Compose(augmentation)
         return data_transform
 
-    def get_moco_dataset(self, dataset_name):
+    def get_moco_dataset(self, dataset_name, train_root=''):
         print(dataset_name)
         dataset_dictionary = {
             'cifar10': 'datasets.CIFAR10(root = self.root_folder, train=True,transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=32, aug_plus = False)),download=True)',
             'stl10': 'datasets.STL10(root = self.root_folder, split="unlabeled", transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=96, aug_plus=False)), download=True)',
-            'mnist': 'datasets.MNIST(root = self.root_folder, train=True, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=28, aug_plus=False)), download=True)'
-            # more datasets can be added
+            'mnist': 'datasets.MNIST(root = self.root_folder, train=True, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=28, aug_plus=False)), download=True)',
+            'imagenet': 'FolderPair(root=train_root, transform=train_transform)'
             }
         try:
             dataset_fn = dataset_dictionary[dataset_name]  # lambda fn
@@ -55,7 +67,7 @@ class MocoDatasetGenerator:
         else:
             return eval(dataset_fn)
 
-    def get_moco_data_loader(self, dataset_name, batch_size):
+    def get_moco_data_loader(self, dataset_name, batch_size, test_root=''):
         if(dataset_name == "cifar10"):
             memory_data = datasets.CIFAR10(root=self.root_folder, train=True, transform=self.test_transform, download=True)
             memory_loader = DataLoader(memory_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True)
@@ -66,7 +78,11 @@ class MocoDatasetGenerator:
             memory_loader = DataLoader(memory_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True)
             test_dataset = datasets.STL10(root=self.root_folder, split='test', download=True, transform=self.test_transform)                         
             test_loader = DataLoader(test_dataset, batch_size=2*batch_size,num_workers=10, drop_last=False, shuffle=False)
-        
+        elif(dataset_name =='folder'):
+            memory_data = datasets.ImageFolder(root=test_root, transform=self.test_transform)
+            memory_loader = DataLoader(memory_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True)
+            test_data = datasets.ImageFolder(root=test_root, transform=self.test_transform)
+            test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True)
         return memory_loader, test_loader
                                     
         

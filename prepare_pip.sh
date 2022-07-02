@@ -4,7 +4,7 @@
 
 apt update -y
 apt-get install -y zip
-pip install pandas matplotlib tensorboard
+pip install pandas matplotlib tensorboard Pillow
 #Download and connect with gdrive
 wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
 tar -xvf gdrive_2.1.1_linux_386.tar.gz
