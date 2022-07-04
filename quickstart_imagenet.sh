@@ -1,7 +1,7 @@
 #!/bin/bash
 #shell script
 # apt-get install -y git zip unzip && \
-# git clone https://github.com/FaridAF276/SSL_MoCo_New.git && \cd SSL_MoCo_New && \
+# git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New\ && \
 # chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow gdown
@@ -17,7 +17,7 @@ mkdir MoCo_eval_checkpoints
 
 # #Launch training process
 time python pre_train.py \
---epochs 2 \
+--epochs 1 \
 --batch_size 512 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
