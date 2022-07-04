@@ -20,15 +20,15 @@ time python pre_train.py \
 --epochs 1 \
 --batch_size 512 \
 --results-dir "MoCo_train_checkpoints/" \
---dataset "cifar10" \
-# --root_folder "imagenet"
+--dataset "folder" \
+--root_folder "imagenet"
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 1 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "cifar10" \
+--dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
-# --root_folder "imagenet" \
+--root_folder "imagenet" \
 -pt-ssl
 
 # #Zip the result and upload them to drive

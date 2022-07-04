@@ -168,7 +168,8 @@ def main():
         print("\n Train set : ", len(train_loader.dataset),
               "\n Memory or test set : ", len(test_loader.dataset),
                "\n Number of class : ", len(train_loader.dataset.classes),
-               "\n Args :", args)
+               "\n Args :", args,
+               "\n Labels :", train_loader.dataset.classes)
         
 
         # freeze all layers but the last fc
@@ -189,7 +190,7 @@ def main():
         for counter, (x_batch, y_batch) in enumerate(train_loader):
             x_batch = x_batch.cuda()
             y_batch = y_batch.cuda()
-            print(y_batch.size())
+            # print(y_batch.size())
             logits = model(x_batch)
             # print(y_batch.size())
             loss = criterion(logits, y_batch)
