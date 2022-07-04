@@ -8,23 +8,22 @@ wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_l
 tar -xvf gdrive_2.1.1_linux_386.tar.gz
 ./gdrive about
 gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip
-cd SSL_MoCo_New
 #Create directories for train et eval models
 mkdir MoCo_train_checkpoints && \
 mkdir MoCo_eval_checkpoints
 
 # #Launch training process
 time python pre_train.py \
---epochs 200 \
+--epochs 2 \
 --batch_size 512 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
---root_folder "tiny_imagenet_200/train"
+--root_folder "tiny_imagenet_200"
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 200 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "cifar10" \
+--dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 -pt-ssl
 
