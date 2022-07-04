@@ -23,7 +23,7 @@ time python pre_train.py \
 --root_folder "imagenet"
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
---epochs 200 \
+--epochs 2 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
