@@ -35,7 +35,6 @@ class TrainUtils:
     def train_one_epoch(self, net , data_loader, train_optimizer, epoch, args):
         # train for one epoch
         net.train()
-        #self.model.train()
         self.adjust_learning_rate(train_optimizer, epoch, args)
         total_loss, total_num, train_bar = 0.0, 0, tqdm(data_loader)
         

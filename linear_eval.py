@@ -180,15 +180,15 @@ def main():
         assert len(parameters) == 2  # fc.weight, fc.bias
 
     optimizer = torch.optim.Adam(model.parameters(), lr=3e-4, weight_decay=0.0008)
-    criterion = torch.nn.CrossEntropyLoss().cuda(non_blocking=True)
+    criterion = torch.nn.CrossEntropyLoss().cuda()
 
 
     epochs = args.epochs
     for epoch in range(1, epochs+1):
         top1_train_accuracy = 0
         for counter, (x_batch, y_batch) in enumerate(train_loader):
-            x_batch = x_batch.cuda(non_blocking=True)
-            y_batch = y_batch.cuda(non_blocking=True)
+            x_batch = x_batch.cuda()
+            y_batch = y_batch.cuda()
 
             logits = model(x_batch)
             loss = criterion(logits, y_batch.squeeze())
@@ -204,8 +204,8 @@ def main():
         top5_accuracy = 0
 
         for counter, (x_batch, y_batch) in enumerate(test_loader):
-            x_batch = x_batch.cuda(non_blocking=True)
-            y_batch = y_batch.cuda(non_blocking=True)
+            x_batch = x_batch.cuda()
+            y_batch = y_batch.cuda()
 
             logits = model(x_batch)
 
