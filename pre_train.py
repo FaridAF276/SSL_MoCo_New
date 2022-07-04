@@ -56,7 +56,7 @@ parser.add_argument('--dataset', default='cifar10', type=str, help='name of the 
 
 
 # root folder
-parser.add_argument('--root-folder', default='./data', type=str, metavar='PATH', help='path to the root folder for dataset')
+parser.add_argument('--root_folder', default='./data', type=str, metavar='PATH', help='path to the root folder for dataset')
 
 args = parser.parse_args()  
 
