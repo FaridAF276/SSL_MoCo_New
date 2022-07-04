@@ -1,6 +1,8 @@
 #!/bin/bash
 #shell script
-#apt-get install -y git zip unzip && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x prepare_pip.sh && ./prepare_pip.sh
+#apt-get install -y git zip unzip && \
+#git clone https://github.com/FaridAF276/SSL_MoCo_New.git && \cd SSL_MoCo_New && \
+#chmod +x prepare_pip.sh && ./prepare_pip.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow gdown
 #Download and connect with gdrive
@@ -18,13 +20,14 @@ time python pre_train.py \
 --batch_size 512 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
---root_folder "tiny_imagenet_200"
+--root_folder "imagenet"
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 200 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
+--root_folder "imagenet"
 -pt-ssl
 
 # #Zip the result and upload them to drive

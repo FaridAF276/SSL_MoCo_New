@@ -13,7 +13,6 @@ import logging
 from moco_wrapper import ModelMoCo
 from moco_dataset_generator import FolderPair
 import sys
-
 parser = argparse.ArgumentParser(description='PyTorch MoCo Linear Eval')
 parser.add_argument('-pt-ssl','--pre-train-ssl', action='store_true', \
     help='What backend to use for pretraining. Boolean. \
@@ -23,6 +22,8 @@ parser.add_argument('--epochs', '-e', default=100, type=int, metavar='N', help='
 parser.add_argument('--dataset-ft', type=str, help='name of the dataset to fine tune the pretrained model on')
 parser.add_argument('--results_dir', type=str, help='name of the path to save the fine tuned model on')
 parser.add_argument('--batch_size',default=256, type=int, help='Number of images in the each batch')
+parser.add_argument('--root_folder',default='', type=str, help='folder where dataset is, it has to have train and test folder in it')
+
 args = parser.parse_args() 
 
 def accuracy(output, target, topk=(1,)):
@@ -68,7 +69,8 @@ def get_cifar10_data_loaders(download, shuffle=False, batch_size=args.batch_size
     test_loader = DataLoader(test_dataset, batch_size=2*batch_size,
                             num_workers=10, drop_last=False, shuffle=shuffle)
     return train_loader, test_loader
-def get_folder_data_loaders(shuffle=False, batch_size=args.batch_size, train_root='', test_root=''):
+def get_folder_data_loaders(shuffle=False, batch_size=args.batch_size, root_folder=''):
+    train_root, test_root = os.path.join(root_folder, "train"), os.path.join(root_folder, "test")
     train_dataset = FolderPair(train_root, transforms.ToTensor())
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size,
