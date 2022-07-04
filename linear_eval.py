@@ -95,9 +95,9 @@ def main():
             config = yaml.load(file, Loader=yaml.FullLoader)
         
         if config['arch'] == 'resnet18':
-            model = torchvision.models.resnet18(pretrained=False, num_classes=10).to(device)
+            model = torchvision.models.resnet18(pretrained=False, num_classes=10).cuda(non_blocking=True)
         elif config['arch'] == 'resnet50':
-            model = torchvision.models.resnet50(pretrained=False, num_classes=10).to(device)
+            model = torchvision.models.resnet50(pretrained=False, num_classes=10).cuda(non_blocking=True)
         # for k in model.state_dict():
         #     print(k)
         checkpoint = torch.load(os.path.join(args.model_dir, 'model.pth'))
@@ -180,15 +180,15 @@ def main():
         assert len(parameters) == 2  # fc.weight, fc.bias
 
     optimizer = torch.optim.Adam(model.parameters(), lr=3e-4, weight_decay=0.0008)
-    criterion = torch.nn.CrossEntropyLoss().to(device)
+    criterion = torch.nn.CrossEntropyLoss().cuda(non_blocking=True)
 
 
     epochs = args.epochs
     for epoch in range(1, epochs+1):
         top1_train_accuracy = 0
         for counter, (x_batch, y_batch) in enumerate(train_loader):
-            x_batch = x_batch.to(device)
-            y_batch = y_batch.to(device)
+            x_batch = x_batch.cuda(non_blocking=True)
+            y_batch = y_batch.cuda(non_blocking=True)
 
             logits = model(x_batch)
             loss = criterion(logits, y_batch.squeeze())
@@ -204,8 +204,8 @@ def main():
         top5_accuracy = 0
 
         for counter, (x_batch, y_batch) in enumerate(test_loader):
-            x_batch = x_batch.to(device)
-            y_batch = y_batch.to(device)
+            x_batch = x_batch.cuda(non_blocking=True)
+            y_batch = y_batch.cuda(non_blocking=True)
 
             logits = model(x_batch)
 
