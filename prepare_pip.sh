@@ -27,7 +27,7 @@ time python linear_eval.py \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
---root_folder "imagenet"
+--root_folder "imagenet" \
 -pt-ssl
 
 # #Zip the result and upload them to drive

@@ -153,8 +153,8 @@ def main():
                 train_loader, test_loader = get_cifar10_data_loaders(download=True)
             elif(args.dataset_ft =='stl10'):
                 train_loader, test_loader = get_stl10_data_loaders(download=True)
-            elif(args.dataset_ft =='stl10'):
-                train_loader, test_loader = get_folder_data_loaders(batch_size=args.batch_size)
+            elif(args.dataset_ft =='folder'):
+                train_loader, test_loader = get_folder_data_loaders(batch_size=args.batch_size, root_folder=args.root_folder)
         else:
             logging.info(f'Fine tune on Dataset: {config["dataset"]}')
             print(f'Fine tune on Dataset: {config["dataset"]}')
@@ -162,6 +162,9 @@ def main():
                 train_loader, test_loader = get_cifar10_data_loaders(download=True)
             elif config['dataset'] == 'stl10':
                 train_loader, test_loader = get_stl10_data_loaders(download=True)
+            elif(args.dataset_ft =='folder'):
+                train_loader, test_loader = get_folder_data_loaders(batch_size=args.batch_size, root_folder=args.root_folder)
+
         
         
 
