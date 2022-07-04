@@ -1,8 +1,8 @@
 #!/bin/bash
 #shell script
-#apt-get install -y git zip unzip && \
-#git clone https://github.com/FaridAF276/SSL_MoCo_New.git && \cd SSL_MoCo_New && \
-#chmod +x prepare_pip.sh && ./prepare_pip.sh
+# apt-get install -y git zip unzip && \
+# git clone https://github.com/FaridAF276/SSL_MoCo_New.git && \cd SSL_MoCo_New && \
+# chmod +x prepare_pip.sh && ./prepare_pip.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow gdown
 #Download and connect with gdrive

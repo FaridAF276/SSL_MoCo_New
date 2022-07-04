@@ -95,9 +95,9 @@ def main():
             config = yaml.load(file, Loader=yaml.FullLoader)
         
         if config['arch'] == 'resnet18':
-            model = torchvision.models.resnet18(pretrained=False, num_classes=10).cuda(non_blocking=True)
+            model = torchvision.models.resnet18(pretrained=False, num_classes=10).cuda()
         elif config['arch'] == 'resnet50':
-            model = torchvision.models.resnet50(pretrained=False, num_classes=10).cuda(non_blocking=True)
+            model = torchvision.models.resnet50(pretrained=False, num_classes=10).cuda()
         # for k in model.state_dict():
         #     print(k)
         checkpoint = torch.load(os.path.join(args.model_dir, 'model.pth'))
