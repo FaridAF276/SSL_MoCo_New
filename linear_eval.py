@@ -169,7 +169,7 @@ def main():
               "\n Memory or test set : ", len(test_loader.dataset),
                "\n Number of class : ", len(train_loader.dataset.classes),
                "\n Args :", args,
-               "\n Labels :", train_loader.dataset.classes)
+               "\n Labels :", train_loader.dataset.class_to_idx)
         
 
         # freeze all layers but the last fc
