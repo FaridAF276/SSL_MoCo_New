@@ -71,7 +71,7 @@ def get_cifar10_data_loaders(download, shuffle=False, batch_size=args.batch_size
     return train_loader, test_loader
 def get_folder_data_loaders(shuffle=False, batch_size=args.batch_size, root_folder=''):
     train_root, test_root = os.path.join(root_folder, "train"), os.path.join(root_folder, "test")
-    train_dataset = FolderPair(train_root, transforms.ToTensor())
+    train_dataset = datasets.ImageFolder(root=train_root, transform=transforms.ToTensor())
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size,
                             num_workers=0, drop_last=False, shuffle=shuffle)
