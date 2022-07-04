@@ -191,7 +191,7 @@ def main():
             y_batch = y_batch.to(device)
 
             logits = model(x_batch)
-            loss = criterion(logits, torch.max(y_batch, 1)[1])
+            loss = criterion(logits, y_batch.squeeze())
             top1 = accuracy(logits, y_batch, topk=(1,))
             top1_train_accuracy += top1[0]
 
