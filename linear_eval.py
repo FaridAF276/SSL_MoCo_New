@@ -166,8 +166,9 @@ def main():
                 train_loader, test_loader = get_folder_data_loaders(batch_size=args.batch_size, root_folder=args.root_folder)
 
         print("\n Train set : ", len(train_loader.dataset),
-        "\n Number of class : ", len(train_loader.dataset.classes),
-        "\n Args :", args)
+              "\n Memory or test set : ", len(test_loader.dataset),
+               "\n Number of class : ", len(train_loader.dataset.classes),
+               "\n Args :", args)
         
 
         # freeze all layers but the last fc
