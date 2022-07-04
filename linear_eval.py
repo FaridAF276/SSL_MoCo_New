@@ -189,7 +189,7 @@ def main():
         for counter, (x_batch, y_batch) in enumerate(train_loader):
             x_batch = x_batch.cuda()
             y_batch = y_batch.cuda()
-
+            print(y_batch.size())
             logits = model(x_batch)
             # print(y_batch.size())
             loss = criterion(logits, y_batch)
