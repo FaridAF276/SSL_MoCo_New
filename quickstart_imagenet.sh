@@ -1,7 +1,7 @@
 #!/bin/bash
 #shell script
 # apt-get install -y git zip unzip && \
-# git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New\ && \
+# git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && \
 # chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow gdown
@@ -20,22 +20,22 @@ time python pre_train.py \
 --epochs 1 \
 --batch_size 512 \
 --results-dir "MoCo_train_checkpoints/" \
---dataset "folder" \
---root_folder "imagenet"
+--dataset "cifar10" \
+# --root_folder "imagenet"
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
---epochs 2 \
+--epochs 1 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "folder" \
+--dataset-ft "cifar10" \
 --results_dir "MoCo_eval_checkpoints/" \
---root_folder "imagenet" \
+# --root_folder "imagenet" \
 -pt-ssl
 
 # #Zip the result and upload them to drive
-zip -r cifar10_pretext.zip MoCo_train_checkpoints
-zip -r cifar10_dowstr.zip MoCo_eval_checkpoints
-./gdrive upload cifar10_pretext.zip
-./gdrive upload cifar10_dowstr.zip
+zip -r imagenet_pretext.zip MoCo_train_checkpoints
+zip -r imagenet_dowstr.zip MoCo_eval_checkpoints
+./gdrive upload imagenet_pretext.zip
+./gdrive upload imagenet_dowstr.zip
 rm -rf MoCo_train_checkpoints
 rm -rf MoCo_eval_checkpoints
 

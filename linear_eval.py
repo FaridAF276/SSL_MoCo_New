@@ -69,17 +69,17 @@ def get_cifar10_data_loaders(download, shuffle=False, batch_size=args.batch_size
     test_loader = DataLoader(test_dataset, batch_size=2*batch_size,
                             num_workers=10, drop_last=False, shuffle=shuffle)
     return train_loader, test_loader
-def get_folder_data_loaders(shuffle=False, batch_size=args.batch_size, root_folder=''):
+def get_folder_data_loaders(shuffle=True, batch_size=args.batch_size, root_folder=''):
     train_root, test_root = os.path.join(root_folder, "train"), os.path.join(root_folder, "test")
     train_dataset = datasets.ImageFolder(root=train_root, transform=transforms.ToTensor())
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size,
-                            num_workers=0, drop_last=False, shuffle=shuffle)
+                            num_workers=2, shuffle=shuffle, pin_memory=True)
 
     test_dataset = datasets.ImageFolder(root= test_root, transform=transforms.ToTensor)
 
     test_loader = DataLoader(test_dataset, batch_size=2*batch_size,
-                            num_workers=10, drop_last=False, shuffle=shuffle)
+                            num_workers=10, shuffle=shuffle, pin_memory=True)
     return train_loader, test_loader
 
 def main():
@@ -162,7 +162,7 @@ def main():
                 train_loader, test_loader = get_cifar10_data_loaders(download=True)
             elif config['dataset'] == 'stl10':
                 train_loader, test_loader = get_stl10_data_loaders(download=True)
-            elif(args.dataset_ft =='folder'):
+            elif(config['dataset'] =='folder'):
                 train_loader, test_loader = get_folder_data_loaders(batch_size=args.batch_size, root_folder=args.root_folder)
 
         print("\n Train set : ", len(train_loader.dataset),
