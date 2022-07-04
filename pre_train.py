@@ -28,7 +28,7 @@ parser.add_argument('--epochs', default=200, type=int, metavar='N', help='number
 parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
 parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
 
-parser.add_argument('--batch-size', default=512, type=int, metavar='N', help='mini-batch size')
+parser.add_argument('--batch_size', default=512, type=int, metavar='N', help='mini-batch size')
 parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
 # moco specific configs:
