@@ -188,8 +188,8 @@ def main():
     for epoch in range(1, epochs+1):
         top1_train_accuracy = 0
         for counter, (x_batch, y_batch) in enumerate(train_loader):
-            x_batch = x_batch.cuda()
-            y_batch = y_batch.cuda()
+            x_batch = x_batch.to("cuda", non_blocking=True)
+            y_batch = y_batch.to("cuda", non_blocking=True)
             # print(y_batch.size())
             logits = model(x_batch)
             # print(y_batch.size())

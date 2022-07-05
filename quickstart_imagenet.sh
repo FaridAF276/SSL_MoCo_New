@@ -14,7 +14,8 @@ gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/
 #Create directories for train et eval models
 mkdir MoCo_train_checkpoints && \
 mkdir MoCo_eval_checkpoints
-
+python -c "import torch;import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torc
+hvision.__version__)"
 # #Launch training process
 time python pre_train.py \
 --epochs 1 \
