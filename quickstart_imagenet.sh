@@ -16,14 +16,14 @@ python -c "import torch;import torchvision; print('\n Torch version:\t', torch._
 hvision.__version__)"
 # #Launch training process
 time python pre_train.py \
---epochs 1 \
+--epochs 200 \
 --batch_size 512 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "imagenet"
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
---epochs 1 \
+--epochs 200 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
