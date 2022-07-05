@@ -80,9 +80,9 @@ class MocoDatasetGenerator:
             test_loader = DataLoader(test_dataset, batch_size=2*batch_size,num_workers=10, drop_last=False, shuffle=False)
         elif(dataset_name =='folder'):
             memory_data = datasets.ImageFolder(root=test_root, transform=self.test_transform)
-            memory_loader = DataLoader(memory_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True)
+            memory_loader = DataLoader(memory_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True, drop_last=True)
             test_data = datasets.ImageFolder(root=test_root, transform=self.test_transform)
-            test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True)
+            test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=16, pin_memory=True, drop_last=True)
         return memory_loader, test_loader
                                     
         

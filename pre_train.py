@@ -70,6 +70,14 @@ def main():
     train_dataset = moco_dataset.get_moco_dataset(args.dataset, train_root=os.path.join(args.root_folder, "train")) # add argument for dataset options
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=16, pin_memory=True, drop_last=True)
     memory_loader, test_loader = moco_dataset.get_moco_data_loader(args.dataset, args.batch_size, test_root=os.path.join(args.root_folder, "test"))
+    print("\n Train set : ", len(train_loader.dataset),
+    "\n Memory or test set : ", len(test_loader.dataset),
+    "\n Number of class : ", len(train_loader.dataset.classes),
+    "\n Args :", args)
+    print("Dataset Summary : ")
+    from collections import Counter
+    print("Sample per class (Train)",dict(Counter(train_loader.dataset.targets)))
+    print("Sample per class (Test/Memory)",dict(Counter(memory_loader.dataset.targets)))
     # create model
     model = ModelMoCo(
     dim=args.moco_dim,
@@ -80,7 +88,7 @@ def main():
     bn_splits=args.bn_splits,
     symmetric=args.symmetric,
     ).cuda()
-
+   
     # define optimizer
     optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, weight_decay=args.wd, momentum=0.9)
 
