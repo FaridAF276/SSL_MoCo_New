@@ -76,7 +76,7 @@ def get_folder_data_loaders(shuffle=True, batch_size=args.batch_size, root_folde
     train_loader = DataLoader(train_dataset, batch_size=batch_size,
                             num_workers=2, shuffle=shuffle, pin_memory=True)
 
-    test_dataset = datasets.ImageFolder(root= test_root, transform=transforms.ToTensor)
+    test_dataset = datasets.ImageFolder(root= test_root, transform=transforms.ToTensor())
 
     test_loader = DataLoader(test_dataset, batch_size=2*batch_size,
                             num_workers=10, shuffle=shuffle, pin_memory=True)
@@ -188,8 +188,8 @@ def main():
     for epoch in range(1, epochs+1):
         top1_train_accuracy = 0
         for counter, (x_batch, y_batch) in enumerate(train_loader):
-            x_batch = x_batch.to(device)
-            y_batch = y_batch.to(device)
+            x_batch = x_batch.cuda()
+            y_batch = y_batch.cuda()
             # print(y_batch.size())
             logits = model(x_batch)
             # print(y_batch.size())
