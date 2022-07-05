@@ -1,4 +1,5 @@
 #!/bin/bash
+#Around 5 GB used
 #shell script
 # apt-get install -y git zip unzip && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
 apt update -y
@@ -17,13 +18,16 @@ hvision.__version__)"
 # #Launch training process
 time python pre_train.py \
 --epochs 200 \
---batch_size 512 \
+--batch_size 2048 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
---root_folder "imagenet"
+--root_folder "imagenet" \
+--knn-k 4000 \
+--bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 200 \
+--batch_size 2048 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
