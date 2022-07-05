@@ -65,6 +65,7 @@ if args.results_dir == '':
 
 def main():
     #load dataset
+    print("Config:\t", args)
     moco_dataset = MocoDatasetGenerator(args.root_folder) # add argument for root folder options
     train_dataset = moco_dataset.get_moco_dataset(args.dataset, train_root=os.path.join(args.root_folder, "train")) # add argument for dataset options
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=16, pin_memory=True, drop_last=True)
