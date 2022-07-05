@@ -180,7 +180,7 @@ def main():
         parameters = list(filter(lambda p: p.requires_grad, model.parameters()))
         assert len(parameters) == 2  # fc.weight, fc.bias
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=3e-4, weight_decay=0.0008)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.3, weight_decay=0.0008)
     criterion = torch.nn.CrossEntropyLoss().cuda()
 
 
