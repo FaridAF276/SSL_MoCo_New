@@ -25,17 +25,33 @@ class MocoDatasetGenerator:
                               transforms.ToTensor(),\
                               transforms.Normalize([0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010])])
 
-    def get_moco_transformation_pipeline(self, size, aug_plus=False):
+    def get_moco_transformation_pipeline(self, size, aug_plus=False, chest=False):
         normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                          std=[0.229, 0.224, 0.225])
+        if chest:
+            augmentation = [
+                # transforms.RandomResizedCrop(size, scale=(0.2, 1.)), #Pas pertinent pour ChestXray
+                transforms.RandomApply([
+                    transforms.ColorJitter(brightness=0.4, hue=0.1)  # not strengthened
+                ], p=0.4),
+                transforms.RandomGrayscale(p=0.2),
+                transforms.RandomRotation(degrees=(0,180), expand=True),
+                # transforms.RandomApply([GaussianBlur([.1, 2.])], p=0.5), #Pas partinent pour Chestxray
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomVerticalFlip(),
+                transforms.RandomEqualize(),
+                transforms.ToTensor(),
+                normalize
+            ]
+            return transforms.Compose(augmentation)
         if aug_plus:
             augmentation = [
-                transforms.RandomResizedCrop(size, scale=(0.2, 1.)),
+                transforms.RandomResizedCrop(size, scale=(0.2, 1.)), #Pas pertinent pour ChestXray
                 transforms.RandomApply([
                     transforms.ColorJitter(0.4, 0.4, 0.4, 0.1)  # not strengthened
                 ], p=0.8),
                 transforms.RandomGrayscale(p=0.2),
-                transforms.RandomApply([GaussianBlur([.1, 2.])], p=0.5),
+                transforms.RandomApply([GaussianBlur([.1, 2.])], p=0.5), #Pas partinent pour Chestxray
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
                 normalize
@@ -58,7 +74,7 @@ class MocoDatasetGenerator:
             'cifar10': 'datasets.CIFAR10(root = self.root_folder, train=True,transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=32, aug_plus = False)),download=True)',
             'stl10': 'datasets.STL10(root = self.root_folder, split="unlabeled", transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=96, aug_plus=False)), download=True)',
             'mnist': 'datasets.MNIST(root = self.root_folder, train=True, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=28, aug_plus=False)), download=True)',
-            'folder': 'FolderPair(root=train_root, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=512, aug_plus=False)))'
+            'folder': 'FolderPair(root=train_root, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=512, aug_plus=False, chest=True)))'
             }
         try:
             dataset_fn = dataset_dictionary[dataset_name]  # lambda fn
