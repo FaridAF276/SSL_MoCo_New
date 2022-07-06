@@ -1,7 +1,7 @@
 #!/bin/bash
 #Around 5 GB used
 #shell script
-# apt-get install -y git zip unzip && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
+# apt-get install -y git zip unzip && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_chestxray.sh && ./quickstart_chestxray.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow split-folders
 #Download and connect with gdrive
@@ -28,7 +28,7 @@ time python pre_train.py \
 --dataset "folder" \
 --root_folder "ChestX" \
 --knn-k 4000 \
---bn-splits 4
+--bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 150 \
@@ -37,6 +37,7 @@ time python linear_eval.py \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "ChestX" \
+--num_classes 3
 -pt-ssl
 
 # #Zip the result and upload them to drive

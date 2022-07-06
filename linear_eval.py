@@ -23,6 +23,7 @@ parser.add_argument('--dataset-ft', type=str, help='name of the dataset to fine 
 parser.add_argument('--results_dir', type=str, help='name of the path to save the fine tuned model on')
 parser.add_argument('--batch_size',default=256, type=int, help='Number of images in the each batch')
 parser.add_argument('--root_folder',default='', type=str, help='folder where dataset is, it has to have train and test folder in it')
+parser.add_argument('--num_classes',default=10, type=int, help='Amount of classes in the dataset')
 
 args = parser.parse_args() 
 
@@ -95,9 +96,9 @@ def main():
             config = yaml.load(file, Loader=yaml.FullLoader)
         
         if config['arch'] == 'resnet18':
-            model = torchvision.models.resnet18(pretrained=False, num_classes=200).cuda()
+            model = torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes).cuda()
         elif config['arch'] == 'resnet50':
-            model = torchvision.models.resnet50(pretrained=False, num_classes=200).cuda()
+            model = torchvision.models.resnet50(pretrained=False, num_classes=args.num_classes).cuda()
         # for k in model.state_dict():
         #     print(k)
         checkpoint = torch.load(os.path.join(args.model_dir, 'model.pth'))
