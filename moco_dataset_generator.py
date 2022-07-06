@@ -30,17 +30,10 @@ class MocoDatasetGenerator:
                                          std=[0.229, 0.224, 0.225])
         if chest:
             augmentation = [
-                # transforms.RandomResizedCrop(size, scale=(0.2, 1.)), #Pas pertinent pour ChestXray
-                transforms.RandomApply([
-                    transforms.ColorJitter(brightness=0.4, hue=0.1)  # not strengthened
-                ], p=0.4),
-                transforms.RandomGrayscale(p=0.2),
                 transforms.RandomRotation(degrees=(0,180), expand=True),
-                # transforms.RandomApply([GaussianBlur([.1, 2.])], p=0.5), #Pas partinent pour Chestxray
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomVerticalFlip(),
-                transforms.RandomEqualize(),
-                transforms.Resize(size=(1024,1024)),
+                transforms.Resize(size=(224,224)),
                 transforms.ToTensor(),
                 normalize
             ]

@@ -7,9 +7,11 @@ from tqdm import tqdm
 import argparse
 import json
 import math
+import numpy as np
 import os
 import pandas as pd
 import torch
+import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
 from resnet_moco import ModelBase
@@ -17,6 +19,7 @@ from moco_wrapper import ModelMoCo
 from moco_dataset_generator import MocoDatasetGenerator
 from train_fun import TrainUtils
 import yaml
+import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser(description='Train MoCo on CIFAR-10')
 
@@ -63,6 +66,20 @@ args = parser.parse_args()
 if args.results_dir == '':
     args.results_dir = './cache-' + datetime.now().strftime("%Y-%m-%d-%H-%M-%S-moco")
 
+
+def imshow(inp, title=None):
+    """Imshow for Tensor."""
+    print(inp.size())
+    inp = inp.numpy().transpose((1, 2, 0))
+    mean = np.array([0.485, 0.456, 0.406])
+    std = np.array([0.229, 0.224, 0.225])
+    inp = std * inp + mean
+    inp = np.clip(inp, 0, 1)
+    plt.imshow(inp)
+    if title is not None:
+        plt.title(title)
+    plt.pause(0.001)
+
 def main():
     #load dataset
     print("Config:\t", args)
@@ -74,6 +91,11 @@ def main():
     "\n Memory or test set : ", len(test_loader.dataset),
     "\n Number of class : ", len(train_loader.dataset.classes),
     "\n Args :", args)
+    inputs, classes = next(iter(train_loader))
+    class_names=train_loader.dataset.classes
+    imshow(out)
+    # Make a grid from batch
+    out = torchvision.utils.make_grid(inputs)
     print("Dataset Summary : ")
     from collections import Counter
     print("Sample per class (Train)",dict(Counter(train_loader.dataset.targets)))
