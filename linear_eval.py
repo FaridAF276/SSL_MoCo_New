@@ -24,6 +24,11 @@ parser.add_argument('--results_dir', type=str, help='name of the path to save th
 parser.add_argument('--batch_size',default=256, type=int, help='Number of images in the each batch')
 parser.add_argument('--root_folder',default='', type=str, help='folder where dataset is, it has to have train and test folder in it')
 parser.add_argument('--num_classes',default=10, type=int, help='Amount of classes in the dataset')
+parser.add_argument('--lr', '--learning-rate', default=0.06, type=float, metavar='LR', help='initial learning rate', dest='lr')
+parser.add_argument('--epochs', default=200, type=int, metavar='N', help='number of total epochs to run')
+parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
+parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
+parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
 args = parser.parse_args() 
 
@@ -181,7 +186,7 @@ def main():
         parameters = list(filter(lambda p: p.requires_grad, model.parameters()))
         assert len(parameters) == 2  # fc.weight, fc.bias
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.06, weight_decay=5e-4)
+    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
     criterion = torch.nn.CrossEntropyLoss().cuda()
 
 

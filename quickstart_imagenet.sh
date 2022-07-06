@@ -19,6 +19,7 @@ hvision.__version__)"
 time python pre_train.py \
 --epochs 200 \
 --batch_size 2048 \
+--lr 0.6
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "imagenet" \
