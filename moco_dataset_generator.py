@@ -40,6 +40,7 @@ class MocoDatasetGenerator:
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomVerticalFlip(),
                 transforms.RandomEqualize(),
+                transforms.Resize(size=(1024,1024)),
                 transforms.ToTensor(),
                 normalize
             ]
