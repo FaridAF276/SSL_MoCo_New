@@ -69,13 +69,15 @@ if args.results_dir == '':
 
 def imshow(inp, title=None):
     """Imshow for Tensor."""
-    print(inp.size())
+    print("Shown picture size : ",inp.size())
     inp = inp.numpy().transpose((1, 2, 0))
     mean = np.array([0.485, 0.456, 0.406])
     std = np.array([0.229, 0.224, 0.225])
     inp = std * inp + mean
     inp = np.clip(inp, 0, 1)
     plt.imshow(inp)
+    plt.imsave(fname="check_image.jpg", arr=inp)
+    plt.show()
     if title is not None:
         plt.title(title)
     plt.pause(0.001)
@@ -91,8 +93,9 @@ def main():
     "\n Memory or test set : ", len(test_loader.dataset),
     "\n Number of class : ", len(train_loader.dataset.classes),
     "\n Args :", args)
-    inputs, classes = next(iter(train_loader))
+    _, (inputs, classes) = next(iter(train_loader))
     class_names=train_loader.dataset.classes
+    out = torchvision.utils.make_grid(inputs)
     imshow(out)
     # Make a grid from batch
     out = torchvision.utils.make_grid(inputs)
