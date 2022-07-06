@@ -27,9 +27,9 @@ time python pre_train.py \
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 200 \
---batch_size 2048 \
+--batch_size 16 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "folder" \
+--dataset-ft "cifar10" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "imagenet" \
 -pt-ssl

@@ -74,7 +74,7 @@ def get_folder_data_loaders(shuffle=True, batch_size=args.batch_size, root_folde
     train_dataset = datasets.ImageFolder(root=train_root, transform=transforms.ToTensor())
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size,
-                            num_workers=2, shuffle=shuffle, pin_memory=True)
+                            num_workers=0, shuffle=shuffle, pin_memory=True)
 
     test_dataset = datasets.ImageFolder(root= test_root, transform=transforms.ToTensor())
 
