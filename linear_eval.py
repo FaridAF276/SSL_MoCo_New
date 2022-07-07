@@ -214,7 +214,7 @@ def main():
 
         top1_train_accuracy /= (counter + 1)
         top1_accuracy = 0
-        top5_accuracy = 0
+        top3_accuracy = 0
 
         for counter, (x_batch, y_batch) in enumerate(test_loader):
             x_batch = x_batch.cuda()
@@ -222,15 +222,15 @@ def main():
 
             logits = model(x_batch)
 
-            top1, top5 = accuracy(logits, y_batch, topk=(1,5))
+            top1, top3 = accuracy(logits, y_batch, topk=(1,3))
             top1_accuracy += top1[0]
-            top5_accuracy += top5[0]
+            top3_accuracy += top3[0]
         
         top1_accuracy /= (counter + 1)
-        top5_accuracy /= (counter + 1)
+        top3_accuracy /= (counter + 1)
         torch.save({'epoch': epoch, 'state_dict': model.state_dict(), 'optimizer' : optimizer.state_dict(),}, os.path.join(args.results_dir,'model_fine.pth'))
-        logging.info("Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@5: {:.2f}".format(epoch,top1_train_accuracy.item(),top1_accuracy.item(),top5_accuracy.item()))
-        print("Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@5: {:.2f}".format(epoch,top1_train_accuracy.item(),top1_accuracy.item(),top5_accuracy.item()))
+        logging.info("Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
+        print("Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
 
 
 if __name__ == "__main__":
