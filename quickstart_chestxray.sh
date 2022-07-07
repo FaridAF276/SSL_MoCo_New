@@ -1,6 +1,7 @@
 #!/bin/bash
 #Around 5 GB used
 #shell script
+# tail -n +17 quickstart_chestxray.sh | bash
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_chestxray.sh && ./quickstart_chestxray.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow split-folders
