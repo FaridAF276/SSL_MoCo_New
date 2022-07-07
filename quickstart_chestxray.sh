@@ -38,7 +38,7 @@ time python linear_eval.py \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "ChestX" \
---num_classes 3
+--num_classes 3 \
 -pt-ssl
 
 # #Zip the result and upload them to drive
