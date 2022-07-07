@@ -27,7 +27,7 @@ parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help=
 parser.add_argument('--root_folder',default='', type=str, help='folder where dataset is, it has to have train and test folder in it')
 parser.add_argument('--num_classes',default=10, type=int, help='Amount of classes in the dataset')
 parser.add_argument('--lr', '--learning-rate', default=0.06, type=float, metavar='LR', help='initial learning rate', dest='lr')
-parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
+# parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
 parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
 parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
