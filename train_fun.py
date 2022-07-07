@@ -65,7 +65,7 @@ class TrainUtils:
         return total_loss / total_num
 
 # lr scheduler for training
-    def adjust_learning_rate(self, optimizer, epoch, args):
+    def adjust_learning_rate(optimizer, epoch, args):
         """Decay the learning rate based on schedule"""
         lr = args.lr
         if args.cos:  # cosine lr schedule
