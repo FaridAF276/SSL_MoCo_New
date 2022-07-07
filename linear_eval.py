@@ -31,9 +31,7 @@ parser.add_argument('--lr', '--learning-rate', default=0.06, type=float, metavar
 parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
 parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
-args = parser.parse_args() 
-train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=memory_loader, test_loader=test_loader)
-
+args = parser.parse_args()
 
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
