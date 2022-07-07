@@ -27,6 +27,7 @@ time python pre_train.py \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "ChestX" \
+--cos \
 --knn-k 4000 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
@@ -38,6 +39,7 @@ time python linear_eval.py \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "ChestX" \
+--cos \
 --num_classes 3 \
 -pt-ssl
 

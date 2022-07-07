@@ -9,6 +9,7 @@ from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from torchvision import datasets
 import argparse
+from  train_fun import adjust_learning_rate
 import logging
 from moco_wrapper import ModelMoCo
 from moco_dataset_generator import FolderPair
@@ -207,7 +208,7 @@ def main():
             loss = criterion(logits, y_batch)
             top1 = accuracy(logits, y_batch, topk=(1,))
             top1_train_accuracy += top1[0]
-
+            adjust_learning_rate(optimizer, epoch, args)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
