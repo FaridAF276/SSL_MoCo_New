@@ -210,6 +210,7 @@ def main():
             loss = criterion(logits, y_batch)
             top1 = accuracy(logits, y_batch, topk=(1,))
             top1_train_accuracy += top1[0]
+            train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=test_loader, test_loader=test_loader)
             train_ut.adjust_learning_rate(optimizer=optimizer, epoch=epoch, args=args)
             optimizer.zero_grad()
             loss.backward()
