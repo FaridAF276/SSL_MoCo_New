@@ -22,7 +22,7 @@ mkdir MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 # #Launch training process
 time python pre_train.py \
---epochs 1 \
+--epochs 200 \
 --batch_size 16 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
@@ -33,7 +33,7 @@ time python pre_train.py \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
---epochs 1 \
+--epochs 200 \
 --batch_size 16 \
 --lr 0.6 \
 --model-dir "MoCo_train_checkpoints/" \
