@@ -17,8 +17,8 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 #to start from here type this command : tail -n +17 quickstart_chestxray.sh | bash
 # #Launch training process
 time python pre_train.py \
---epochs 200 \
---batch_size 1 \
+--epochs 1 \
+--batch_size 512 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -28,8 +28,8 @@ time python pre_train.py \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
---epochs 200 \
---batch_size 1 \
+--epochs 1 \
+--batch_size 512 \
 --lr 0.6 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
