@@ -14,7 +14,8 @@ wget https://data.mendeley.com/public-files/datasets/jctsfj2sfn/files/148dd4e7-6
 unzip file_downloaded
 splitfolders --output ChestX --ratio .8 .1 .1 --move \
 -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
-
+#To start from here type this command : 
+# tail -n +17 quickstart_chestxray.sh | bash
 
 #Create directories for train et eval models
 mkdir MoCo_train_checkpoints && \
