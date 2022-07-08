@@ -36,7 +36,7 @@ time python linear_eval.py \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "imagenet" \
 --cos \
---num_classes 3 \
+--num_classes 200 \
 -pt-ssl
 
 # #Zip the result and upload them to drive
