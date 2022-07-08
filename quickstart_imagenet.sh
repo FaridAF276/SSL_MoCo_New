@@ -22,7 +22,7 @@ time python pre_train.py \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
---root_folder "ChestX" \
+--root_folder "imagenet" \
 --cos \
 --knn-k 4000 \
 --bn-splits 1
@@ -34,7 +34,7 @@ time python linear_eval.py \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
---root_folder "ChestX" \
+--root_folder "imagenet" \
 --cos \
 --num_classes 3 \
 -pt-ssl
