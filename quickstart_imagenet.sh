@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 #Around 5 GB used
 #shell script
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
@@ -16,6 +17,7 @@ mkdir MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 #to start from here type this command : tail -n +17 quickstart_chestxray.sh | bash
 # #Launch training process
+#launch one epoch to see if everything is working fine
 time python pre_train.py \
 --epochs 1 \
 --batch_size 64 \
@@ -38,14 +40,39 @@ time python linear_eval.py \
 --cos \
 --num_classes 200 \
 -pt-ssl
+rm -rf MoCo_train_checkpoints
+rm -rf MoCo_eval_checkpoints
+#launch the real training
+
+time python pre_train.py \
+--epochs 200 \
+--batch_size 32 \
+--lr 0.6 \
+--results-dir "MoCo_train_checkpoints/" \
+--dataset "folder" \
+--root_folder "imagenet" \
+--cos \
+--knn-k 4000 \
+--bn-splits 1
+touch MoCo_train_checkpoints/linear_eval.log
+time python linear_eval.py \
+--epochs 200 \
+--batch_size 32 \
+--lr 0.6 \
+--model-dir "MoCo_train_checkpoints/" \
+--dataset-ft "folder" \
+--results_dir "MoCo_eval_checkpoints/" \
+--root_folder "imagenet" \
+--cos \
+--num_classes 200 \
+-pt-ssl
+
 
 # #Zip the result and upload them to drive
 zip -r imagenet_pretext.zip MoCo_train_checkpoints
 zip -r imagenet_dowstr.zip MoCo_eval_checkpoints
 ./gdrive upload imagenet_pretext.zip
 ./gdrive upload imagenet_dowstr.zip
-rm -rf MoCo_train_checkpoints
-rm -rf MoCo_eval_checkpoints
 
 #Lets do that again!
 
