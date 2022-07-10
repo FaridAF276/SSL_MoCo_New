@@ -31,7 +31,7 @@ time python pre_train.py \
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 1 \
---batch_size 32 \
+--batch_size 16 \
 --lr 0.6 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
@@ -46,7 +46,7 @@ rm -rf MoCo_eval_checkpoints
 
 time python pre_train.py \
 --epochs 200 \
---batch_size 32 \
+--batch_size 16 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
