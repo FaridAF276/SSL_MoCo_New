@@ -20,7 +20,7 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 #launch one epoch to see if everything is working fine
 time python pre_train.py \
 --epochs 1 \
---batch_size 32 \
+--batch_size 16 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -57,7 +57,7 @@ time python pre_train.py \
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 200 \
---batch_size 32 \
+--batch_size 16 \
 --lr 0.6 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
