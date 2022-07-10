@@ -93,12 +93,12 @@ def main():
     "\n Memory or test set : ", len(test_loader.dataset),
     "\n Number of class : ", len(train_loader.dataset.classes),
     "\n Args :", args)
-    _, (inputs, classes) = next(iter(train_loader))
-    class_names=train_loader.dataset.classes
-    out = torchvision.utils.make_grid(inputs)
-    imshow(out)
-    # Make a grid from batch
-    out = torchvision.utils.make_grid(inputs)
+#     _, (inputs, classes) = next(iter(train_loader))
+#     class_names=train_loader.dataset.classes
+#     out = torchvision.utils.make_grid(inputs)
+#     imshow(out)
+#     # Make a grid from batch
+#     out = torchvision.utils.make_grid(inputs)
     print("Dataset Summary : ")
     from collections import Counter
     print("Sample per class (Train)",dict(Counter(train_loader.dataset.targets)))
