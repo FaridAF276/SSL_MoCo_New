@@ -78,6 +78,7 @@ def get_cifar10_data_loaders(download, shuffle=False, batch_size=args.batch_size
     return train_loader, test_loader
 def get_folder_data_loaders(shuffle=True, batch_size=args.batch_size, root_folder=''):
     folder_transform=transforms.Compose([
+        transforms.Resize((224,224)),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),
     ])
