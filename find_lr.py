@@ -83,8 +83,9 @@ def main():
     bn_splits=args.bn_splits,
     symmetric=args.symmetric,
     ).cuda()
-    for lr in lr_values:
-        optimizer = torch.optim.SGD(model.parameters(), lr=lr, weight_decay=args.wd, momentum=0.9)
+    for test_lr in lr_values:
+        args.lr=test_lr
+        optimizer = torch.optim.SGD(model.parameters(), lr=test_lr, weight_decay=args.wd, momentum=0.9)
         epoch_start =1
         moco_train = TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=memory_loader, test_loader=test_loader)
         last_loss=moco_train.train(epoch_start)
