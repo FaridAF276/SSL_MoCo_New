@@ -74,16 +74,16 @@ def main():
     "\n Number of class : ", len(train_loader.dataset.classes),
     "\n Args :", args)
 
-    model = ModelMoCo(
-    dim=args.moco_dim,
-    K=args.moco_k,
-    m=args.moco_m,
-    T=args.moco_t,
-    arch=args.arch,
-    bn_splits=args.bn_splits,
-    symmetric=args.symmetric,
-    ).cuda()
     for test_lr in lr_values:
+        model = ModelMoCo(
+        dim=args.moco_dim,
+        K=args.moco_k,
+        m=args.moco_m,
+        T=args.moco_t,
+        arch=args.arch,
+        bn_splits=args.bn_splits,
+        symmetric=args.symmetric,
+        ).cuda()
         args.lr=test_lr
         optimizer = torch.optim.SGD(model.parameters(), lr=test_lr, weight_decay=args.wd, momentum=0.9)
         epoch_start =1
