@@ -158,7 +158,7 @@ class TrainUtils:
 
     def train(self, epoch_start=1):
         # training loop
-        
+        last_loss=0
         epoch_start = 1
         self.n_iter= 0
 
@@ -167,11 +167,12 @@ class TrainUtils:
 
         for epoch in range(epoch_start, self.args.epochs + 1):
             train_loss = self.train_one_epoch(self.model, self.train_loader, self.optimizer, epoch, self.args)
-            
+            last_loss=train_loss
             logging.info("Epoch: {}\ttrain_loss: {:.3f}\tAcc@1: {:.3f}\tAcc@5: {:.3f}".format(epoch,train_loss,self.top1[0], self.top5[0]))
             torch.save({'epoch': epoch, 'state_dict': self.model.state_dict(), 'optimizer' : self.optimizer.state_dict(),}, os.path.join(self.args.results_dir,'model.pth'))
         
         logging.info(f"Model, metadata and training log has been saved at {self.path}.")
+        return last_loss
 
     def knn_train(self, epoch_start=1):
         # training loop
