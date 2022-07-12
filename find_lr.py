@@ -87,7 +87,8 @@ def main():
         optimizer = torch.optim.SGD(model.parameters(), lr=lr, weight_decay=args.wd, momentum=0.9)
         epoch_start =1
         moco_train = TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=memory_loader, test_loader=test_loader)
-        moco_train.train(epoch_start)
+        last_loss=moco_train.train(epoch_start)
+        print(last_loss)
 
 if __name__ == "__main__":
     main()
