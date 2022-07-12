@@ -17,4 +17,4 @@ python find_lr.py \
 --bn-splits=8 \
 --results-dir=lr_find \
 --dataset=folder \
---root_folder=Chestx
+--root_folder=ChestX
