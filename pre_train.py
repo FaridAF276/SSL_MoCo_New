@@ -99,10 +99,10 @@ def main():
 #     imshow(out)
 #     # Make a grid from batch
 #     out = torchvision.utils.make_grid(inputs)
-    print("Dataset Summary : ")
-    from collections import Counter
-    print("Sample per class (Train)",dict(Counter(train_loader.dataset.targets)))
-    print("Sample per class (Test/Memory)",dict(Counter(memory_loader.dataset.targets)))
+#     print("Dataset Summary : ")
+#     from collections import Counter
+#     print("Sample per class (Train)",dict(Counter(train_loader.dataset.targets)))
+#     print("Sample per class (Test/Memory)",dict(Counter(memory_loader.dataset.targets)))
     # create model
     model = ModelMoCo(
     dim=args.moco_dim,
