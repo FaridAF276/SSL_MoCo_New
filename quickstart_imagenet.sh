@@ -4,7 +4,7 @@ set -e
 #shell script
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
 apt update -y
-pip install pandas matplotlib tensorboard Pillow gdown
+pip install pandas matplotlib tensorboard Pillow gdown split-folders
 #Download and connect with gdrive
 wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
 tar -xvf gdrive_2.1.1_linux_386.tar.gz
