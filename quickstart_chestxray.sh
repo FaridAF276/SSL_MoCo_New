@@ -1,7 +1,10 @@
 #!/bin/bash
 #Around 5 GB used
+apt-get install -y wget; wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast;
+./vast start instance ${VAST_CONTAINERLABEL:2}
 #shell script
 # tail -n +17 quickstart_chestxray.sh | bash
+#cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key;
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_chestxray.sh && ./quickstart_chestxray.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow split-folders
@@ -58,3 +61,4 @@ zip -r chest_dowstr.zip MoCo_eval_checkpoints
 ./gdrive upload chest_dowstr.zip
 rm -rf MoCo_train_checkpoints
 rm -rf MoCo_eval_checkpoints
+./vast stop instance ${VAST_CONTAINERLABEL:2}

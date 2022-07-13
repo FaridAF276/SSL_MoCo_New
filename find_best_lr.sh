@@ -1,4 +1,7 @@
+#cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key;
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x find_best_lr.sh && ./find_best_lr.sh
+apt-get install -y wget; wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast;
+./vast start instance ${VAST_CONTAINERLABEL:2}
 apt update -y
 pip install pandas matplotlib tensorboard Pillow split-folders
 #Download and connect with gdrive
@@ -12,7 +15,7 @@ splitfolders --output ChestX --ratio .8 .1 .1 --move \
 -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
 mkdir lr_find 
 python find_lr.py \
---lr=0.5 --epochs=10 \
+--lr=0.4 --lr_width 0.2 --epochs=10 \
 --batch_size=16 \
 --bn-splits=1 \
 --results-dir=lr_find \
@@ -44,3 +47,6 @@ python find_lr.py \
 --bn-splits=1 \
 --results-dir=lr_find \
 --dataset=stl10
+
+'''
+./vast stop instance ${VAST_CONTAINERLABEL:2}

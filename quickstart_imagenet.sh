@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
+apt-get install -y wget; wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast;
+./vast start instance ${VAST_CONTAINERLABEL:2}
 #Around 5 GB used
 #shell script
+#cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key;
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_imagenet.sh && ./quickstart_imagenet.sh
 apt update -y
 pip install pandas matplotlib tensorboard Pillow gdown split-folders
@@ -96,3 +99,4 @@ zip -r imagenet_dowstr.zip MoCo_eval_checkpoints
 # rm -rf MoCo_eval_checkpoints
 # cd ~
 # rm -r SSL_MoCo_New
+./vast stop instance ${VAST_CONTAINERLABEL:2}
