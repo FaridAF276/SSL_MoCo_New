@@ -12,8 +12,13 @@ tar -xvf gdrive_2.1.1_linux_386.tar.gz
 #Download ImageNet dataset
 wget https://data.mendeley.com/public-files/datasets/jctsfj2sfn/files/148dd4e7-636b-404b-8a3c-6938158bc2c0/file_downloaded && \
 unzip file_downloaded
-splitfolders --output ChestX --ratio .8 .1 .1 --move \
--- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
+# splitfolders --output ChestX --ratio .8 .1 .1 --move \
+# -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
+
+time python dataset_preparation.py \
+--dataset_dir COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset \
+--percentage 0.2 \
+--split_train_test
 #To start from here type this command : 
 # tail -n +17 quickstart_chestxray.sh | bash
 
@@ -28,11 +33,12 @@ time python pre_train.py \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
---root_folder "ChestX" \
+--root_folder "pretext" \
 --cos \
 --knn-k 4000 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
+
 time python linear_eval.py \
 --epochs 200 \
 --batch_size 16 \
@@ -40,7 +46,7 @@ time python linear_eval.py \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
---root_folder "ChestX" \
+--root_folder "downstream" \
 --cos \
 --num_classes 3 \
 -pt-ssl

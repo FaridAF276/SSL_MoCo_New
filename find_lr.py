@@ -96,10 +96,11 @@ def main():
         epoch_start =1
         moco_train = TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=memory_loader, test_loader=test_loader)
         last_loss=moco_train.train(epoch_start)
-        lr_results['lr'].append(test_lr)
-        lr_results['dataset'].append(args.dataset)
-        lr_results['dataset_path'].append(args.root_folder)
-        lr_results['last_loss'].append(last_loss)
+        lr_dict['lr'].append(test_lr)
+        lr_dict['dataset'].append(args.dataset)
+        lr_dict['dataset_path'].append(args.root_folder)
+        lr_dict['last_loss'].append(last_loss)
+    lr_results=pd.DataFrame(lr_dict)
     lr_results.to_csv(file_name)
 
 if __name__ == "__main__":

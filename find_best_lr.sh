@@ -18,7 +18,7 @@ python find_lr.py \
 --results-dir=lr_find \
 --dataset=folder \
 --root_folder=ChestX
-
+'''
 gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip
 
 python find_lr.py \
