@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e 
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && chmod +x SSL_MoCo_New/find_best_lr.sh && ./SSL_MoCo_New/find_best_lr.sh
-cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key; 
+# cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key; 
 apt-get install -y wget; wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; 
 chmod +x vast; 
 sleep 5
-./vast start instance ${VAST_CONTAINERLABEL:2}; 
+# ./vast start instance ${VAST_CONTAINERLABEL:2}; 
 cd SSL_MoCo_New
 #cd SSL_MoCo_New && chmod +x SSL_MoCo_New/find_best_lr.sh && ./SSL_MoCo_New/find_best_lr.sh
 apt update -y
