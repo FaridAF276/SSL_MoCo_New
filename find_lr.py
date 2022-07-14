@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser(description='Train MoCo on CIFAR-10')
 parser.add_argument('-a', '--arch', default='resnet18')
 
 # lr: 0.06 for batch 512 (or 0.03 for batch 256)
-parser.add_argument('--lr_min', '--learning-rate', default=0.06, type=float, metavar='LR', help='initial learning rate', dest='lr')
+parser.add_argument('--lr_min', '--learning-rate', default=0.06, type=float, help='initial learning rate')
 parser.add_argument('--lr_max', default=0.5, type=float, help='width of the array of lr to be tested')
 parser.add_argument('--epochs', default=200, type=int, metavar='N', help='number of total epochs to run')
 parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
