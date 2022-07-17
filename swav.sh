@@ -1,4 +1,4 @@
-apt-get install -y git && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x swav.sh && ./swav.sh
+# apt-get install -y git && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x swav.sh && ./swav.sh
 apt-get install -y unzip zip git wget
 wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
 bash ~/Anaconda3-2022.05-Linux-x86_64.sh
