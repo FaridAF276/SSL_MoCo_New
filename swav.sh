@@ -26,7 +26,7 @@ conda install -y -c conda-forge gdrive gdown
 
 gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing
 unzip tiny_imagenet_200.zip
-
+mkdir swav_checkpoint
 python -m torch.distributed.launch --nproc_per_node=1 main_swav.py \
 --data_path imagenet/train \
 --epochs 2 \
@@ -34,6 +34,7 @@ python -m torch.distributed.launch --nproc_per_node=1 main_swav.py \
 --final_lr 0.0006 \
 --warmup_epochs 0 \
 --batch_size 32 \
+--dump_path swav_checkpoint \
 --size_crops 224 96 \
 --nmb_crops 2 6 \
 --min_scale_crops 0.14 0.05 \
@@ -42,3 +43,16 @@ python -m torch.distributed.launch --nproc_per_node=1 main_swav.py \
 --freeze_prototypes_niters 5005 \
 --queue_length 3840 \
 --epoch_queue_starts 15
+
+zip -r imagenet_swav_pretext.zip swav_checkpoint
+./gdrive upload imagenet_swav_pretext.zip
+mkdir swav_ssl_checkpoint
+python -m torch.distributed.launch --nproc_per_node=8 eval_semisup.py \
+--data_path imagenet \
+--pretrained swav_checkpoint/swav_2ep_pretrain.pth.tar \
+--labels_perc "10" \
+--lr 0.01 \
+--lr_last_layer 0.2\
+--dump_path swav_ssl_checkpoint
+zip -r imagenet_swav_downstr.zip swav_ssl_checkpoint
+./gdrive upload imagenet_swav_downstr.zip
