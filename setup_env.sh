@@ -9,7 +9,7 @@ cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VA
 #shell script
 # tail -n +17 quickstart_chestxray.sh | bash
 apt update -y
-pip install pandas matplotlib tensorboard Pillow split-folders
+pip install pandas matplotlib tensorboard Pillow split-folders gdown
 #Download and connect with gdrive
 wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
 tar -xvf gdrive_2.1.1_linux_386.tar.gz
