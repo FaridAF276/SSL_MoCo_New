@@ -1,5 +1,4 @@
 #!/bin/bash
-cd SSL_MoCo_New
 
 ## Best cifar10 : 0.01
 ##Best stl10 : 0.01
