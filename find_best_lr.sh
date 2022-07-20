@@ -41,6 +41,8 @@ gdown --fuzzy https://drive.google.com/file/d/1_dRbJEpMH7436l8aU4xrGHcFIE9i5TX7/
 python find_lr.py \
 --lr_min=0.1 --lr_max=0.4 --epochs=5 \
 --nb_value 5 \
+--size_crop 32 \
+--aug_plus \
 --batch_size=16 \
 --bn-splits=1 \
 --results-dir=lr_find \
