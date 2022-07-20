@@ -21,16 +21,18 @@ sleep 5
 # tar -xvf gdrive_2.1.1_linux_386.tar.gz
 # ./gdrive about
 #Download ImageNet dataset
-# wget https://data.mendeley.com/public-files/datasets/jctsfj2sfn/files/148dd4e7-636b-404b-8a3c-6938158bc2c0/file_downloaded && \
-# unzip file_downloaded
-# mkdir lr_find 
-# python find_lr.py \
-# --lr_min=0.5 --lr_max=1 --epochs=5 \
-# --batch_size=16 \
-# --bn-splits=1 \
-# --results-dir=lr_find \
-# --dataset=folder \
-# --root_folder=ChestX
+wget -nc https://data.mendeley.com/public-files/datasets/jctsfj2sfn/files/148dd4e7-636b-404b-8a3c-6938158bc2c0/file_downloaded && \
+unzip file_downloaded && \
+splitfolders --output ChestX --ratio .8 .1 .1 --move \
+-- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset && \
+mkdir lr_find && \
+python find_lr.py \
+--lr_min=0.5 --lr_max=1 --epochs=5 \
+--batch_size=16 \
+--bn-splits=1 \
+--results-dir=lr_find \
+--dataset=folder \
+--root_folder=ChestX
 '''
 
 # splitfolders --output imgnt --ratio .8 .1 .1 --move \

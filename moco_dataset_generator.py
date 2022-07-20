@@ -19,7 +19,8 @@ class FolderPair(datasets.ImageFolder):
             im_2 = self.transform(img)
         return im_1, im_2
 class MocoDatasetGenerator:
-    def __init__(self, root_folder='./data'):
+    def __init__(self, root_folder='./data', args=None):
+        self.args=args
         self.root_folder = root_folder
         self.test_transform = transforms.Compose([\
                               transforms.ToTensor(),\
@@ -68,7 +69,7 @@ class MocoDatasetGenerator:
             'cifar10': 'datasets.CIFAR10(root = self.root_folder, train=True,transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=32, aug_plus = False)),download=True)',
             'stl10': 'datasets.STL10(root = self.root_folder, split="unlabeled", transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=96, aug_plus=False)), download=True)',
             'mnist': 'datasets.MNIST(root = self.root_folder, train=True, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=28, aug_plus=False)), download=True)',
-            'folder': 'FolderPair(root=train_root, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=32, aug_plus=True, chest=False)))'
+            'folder': 'FolderPair(root=train_root, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size={}, aug_plus={}, chest={})))'.format(self.args.size_crop, self.args.aug_plus, self.args.chest_aug)
             }
         try:
             dataset_fn = dataset_dictionary[dataset_name]  # lambda fn

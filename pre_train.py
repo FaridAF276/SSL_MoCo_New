@@ -30,7 +30,9 @@ parser.add_argument('--lr', '--learning-rate', default=0.06, type=float, metavar
 parser.add_argument('--epochs', default=200, type=int, metavar='N', help='number of total epochs to run')
 parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
 parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
-
+parser.add_argument('--size_crop', default=224, type=int, help='size of the image crops')
+parser.add_argument('--aug_plus', action='store_true', help='School a more developped augmentation strategy')
+parser.add_argument('--chest_aug', action='store_true', help='School a more developped augmentation strategy for chest x ray')
 parser.add_argument('--batch_size', default=512, type=int, metavar='N', help='mini-batch size')
 parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
@@ -85,7 +87,7 @@ def imshow(inp, title=None):
 def main():
     #load dataset
     print("Config:\t", args)
-    moco_dataset = MocoDatasetGenerator(args.root_folder) # add argument for root folder options
+    moco_dataset = MocoDatasetGenerator(args.root_folder, args=args) # add argument for root folder options
     train_dataset = moco_dataset.get_moco_dataset(args.dataset, train_root=os.path.join(args.root_folder, "train")) # add argument for dataset options
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=16, pin_memory=True, drop_last=True)
     memory_loader, test_loader = moco_dataset.get_moco_data_loader(args.dataset, args.batch_size, test_root=os.path.join(args.root_folder, "test"))
