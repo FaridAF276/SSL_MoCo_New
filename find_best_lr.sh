@@ -29,6 +29,8 @@ mkdir lr_find && \
 python find_lr.py \
 --lr_min=0.5 --lr_max=1 --epochs=5 \
 --batch_size=16 \
+--size_crop 224 \
+--chest_aug \
 --bn-splits=1 \
 --results-dir=lr_find \
 --dataset=folder \
