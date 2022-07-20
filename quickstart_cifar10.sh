@@ -1,6 +1,5 @@
 #!/bin/bash
 cd SSL_MoCo_New
-gdown --fuzzy https://drive.google.com/file/d/1ny6vBH54X0qV07EsNhgddHFGYgoROswy/view?usp=sharing && unzip cifar10.zip
 time python dataset_preparation.py \
 --dataset_dir cifar10 \
 --percentage 0.2 \
@@ -18,7 +17,7 @@ time python pre_train.py \
 --batch_size 16 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
---dataset "folder" \
+--dataset "cifar10" \
 --root_folder "pretext" \
 --cos \
 --knn-k 4000 \
@@ -35,7 +34,7 @@ time python linear_eval.py \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
 --cos \
---num_classes 3 \
+--num_classes 10 \
 -pt-ssl
 
 # #Zip the result and upload them to drive
