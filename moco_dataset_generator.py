@@ -68,7 +68,7 @@ class MocoDatasetGenerator:
             'cifar10': 'datasets.CIFAR10(root = self.root_folder, train=True,transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=32, aug_plus = False)),download=True)',
             'stl10': 'datasets.STL10(root = self.root_folder, split="unlabeled", transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=96, aug_plus=False)), download=True)',
             'mnist': 'datasets.MNIST(root = self.root_folder, train=True, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=28, aug_plus=False)), download=True)',
-            'folder': 'FolderPair(root=train_root, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=512, aug_plus=False, chest=True)))'
+            'folder': 'FolderPair(root=train_root, transform=TwoCropsTransform(self.get_moco_transformation_pipeline(size=512, aug_plus=False, chest=False)))'
             }
         try:
             dataset_fn = dataset_dictionary[dataset_name]  # lambda fn
