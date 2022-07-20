@@ -18,7 +18,7 @@ time python pre_train.py \
 --batch_size 16 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
---dataset "cifar10" \
+--dataset "folder" \
 --root_folder "pretext" \
 --cos \
 --knn-k 4000 \
@@ -35,7 +35,7 @@ time python linear_eval.py \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
 --cos \
---num_classes 3 \
+--num_classes 10 \
 -pt-ssl
 
 # #Zip the result and upload them to drive
