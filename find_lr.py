@@ -26,7 +26,7 @@ parser.add_argument('-a', '--arch', default='resnet18')
 
 # lr: 0.06 for batch 512 (or 0.03 for batch 256)
 parser.add_argument('--lr_min', '--learning-rate', default=0.06, type=float, help='initial learning rate')
-parser.add_argument('--nb_value', default=10, type=float, help='number of lrvalue to test')
+parser.add_argument('--nb_value', default=10, type=int, help='number of lrvalue to test')
 parser.add_argument('--lr_max', default=0.5, type=float, help='width of the array of lr to be tested')
 parser.add_argument('--logspace', action="store_true", help='If true value between lr min and lr max will be evenly spaced in log scale')
 parser.add_argument('--epochs', default=200, type=int, metavar='N', help='number of total epochs to run')

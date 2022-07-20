@@ -35,7 +35,7 @@ pip install pandas matplotlib tensorboard Pillow split-folders gdown
 
 # splitfolders --output imgnt --ratio .8 .1 .1 --move \
 # -- imagenet
-gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip && \
+gdown --fuzzy https://drive.google.com/file/d/1_dRbJEpMH7436l8aU4xrGHcFIE9i5TX7/view?usp=sharing && unzip tiny-imagenet-200.zip && \
 python find_lr.py \
 --lr_min=0.1 --lr_max=0.4 --epochs=5 \
 --nb_value 5 \
