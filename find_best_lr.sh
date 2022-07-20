@@ -32,11 +32,13 @@ pip install pandas matplotlib tensorboard Pillow split-folders gdown
 # --dataset=folder \
 # --root_folder=ChestX
 '''
-gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip
-splitfolders --output imgnt --ratio .8 .1 .1 --move \
--- imagenet
+
+# splitfolders --output imgnt --ratio .8 .1 .1 --move \
+# -- imagenet
+gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip && \
 python find_lr.py \
---lr_min=0.5 --lr_max=1 --epochs=5 \
+--lr_min=0.1 --lr_max=0.4 --epochs=5 \
+--nb_value 5 \
 --batch_size=16 \
 --bn-splits=1 \
 --results-dir=lr_find \
