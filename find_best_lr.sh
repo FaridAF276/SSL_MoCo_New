@@ -12,10 +12,10 @@ chmod +x vast;
 sleep 5
 # ./vast start instance ${VAST_CONTAINERLABEL:2}; 
 #start from here : # tail -n +9 find_best_lr.sh | bash
-cd SSL_MoCo_New
-#cd SSL_MoCo_New && chmod +x SSL_MoCo_New/find_best_lr.sh && ./SSL_MoCo_New/find_best_lr.sh
-apt update -y
-pip install pandas matplotlib tensorboard Pillow split-folders gdown
+# cd SSL_MoCo_New
+# #cd SSL_MoCo_New && chmod +x SSL_MoCo_New/find_best_lr.sh && ./SSL_MoCo_New/find_best_lr.sh
+# apt update -y
+# pip install pandas matplotlib tensorboard Pillow split-folders gdown
 #Download and connect with gdrive
 # wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
 # tar -xvf gdrive_2.1.1_linux_386.tar.gz
