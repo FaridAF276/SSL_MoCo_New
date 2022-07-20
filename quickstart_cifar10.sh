@@ -31,7 +31,7 @@ time python linear_eval.py \
 --batch_size 16 \
 --lr 0.6 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "cifar10" \
+--dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
 --cos \
