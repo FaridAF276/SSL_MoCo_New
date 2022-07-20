@@ -3,6 +3,8 @@ cd SSL_MoCo_New
 
 ## Best cifar10 : 0.01
 ##Best stl10 : 0.01
+##Best Imagenet : 
+##Best ChestXRay : 
 set -e 
 # apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && chmod +x SSL_MoCo_New/find_best_lr.sh && ./SSL_MoCo_New/find_best_lr.sh
 # cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key; 
