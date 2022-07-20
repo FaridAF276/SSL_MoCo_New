@@ -1,4 +1,6 @@
 #!/bin/bash
+cd SSL_MoCo_New
+
 #Around 5 GB used
 # splitfolders --output ChestX --ratio .8 .1 .1 --move \
 # -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset

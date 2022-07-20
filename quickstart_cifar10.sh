@@ -1,4 +1,5 @@
 #!/bin/bash
+cd SSL_MoCo_New
 gdown --fuzzy https://drive.google.com/file/d/1ny6vBH54X0qV07EsNhgddHFGYgoROswy/view?usp=sharing && unzip cifar10.zip
 time python dataset_preparation.py \
 --dataset_dir cifar10 \
