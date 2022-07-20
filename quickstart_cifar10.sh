@@ -13,7 +13,7 @@ mkdir MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 # #Launch training process
 time python pre_train.py \
---epochs 200 \
+--epochs 1 \
 --batch_size 16 \
 --lr 0.6 \
 --results-dir "MoCo_train_checkpoints/" \
@@ -26,7 +26,7 @@ touch MoCo_train_checkpoints/linear_eval.log
 zip -r chest_pretext.zip MoCo_train_checkpoints
 ./gdrive upload chest_pretext.zip
 time python linear_eval.py \
---epochs 200 \
+--epochs 1 \
 --batch_size 16 \
 --lr 0.6 \
 --model-dir "MoCo_train_checkpoints/" \
