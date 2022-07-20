@@ -27,6 +27,7 @@ parser.add_argument('-a', '--arch', default='resnet18')
 # lr: 0.06 for batch 512 (or 0.03 for batch 256)
 parser.add_argument('--lr_min', '--learning-rate', default=0.06, type=float, help='initial learning rate')
 parser.add_argument('--lr_max', default=0.5, type=float, help='width of the array of lr to be tested')
+parser.add_argument('--logspace', action="store_true", help='If true value between lr min and lr max will be evenly spaced in log scale')
 parser.add_argument('--epochs', default=200, type=int, metavar='N', help='number of total epochs to run')
 parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int, help='learning rate schedule (when to drop lr by 10x); does not take effect if --cos is on')
 parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
@@ -58,7 +59,8 @@ parser.add_argument('--root_folder', default='./data', type=str, metavar='PATH',
 args = parser.parse_args()  
 
 
-lr_values = np.linspace(args.lr_min, args.lr_max, num= 10)
+# lr_values = np.linspace(args.lr_min, args.lr_max, num= 10)
+lr_values = np.logspace(args.lr_min, args.lr_max, num= 10) if args.logspace else np.linspace(args.lr_min, args.lr_max, num= 10) 
 
 if args.results_dir == '':
     args.results_dir = './cache-' + datetime.now().strftime("%Y-%m-%d-%H-%M-%S-moco")
