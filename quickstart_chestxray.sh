@@ -1,20 +1,5 @@
 #!/bin/bash
 #Around 5 GB used
-apt-get install -y wget; wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast;
-./vast start instance ${VAST_CONTAINERLABEL:2}
-#shell script
-# tail -n +17 quickstart_chestxray.sh | bash
-#cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key;
-# apt-get install -y git zip vim unzip fastjar && git clone https://github.com/FaridAF276/SSL_MoCo_New.git && cd SSL_MoCo_New && chmod +x quickstart_chestxray.sh && ./quickstart_chestxray.sh
-apt update -y
-pip install pandas matplotlib tensorboard Pillow split-folders
-#Download and connect with gdrive
-wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
-tar -xvf gdrive_2.1.1_linux_386.tar.gz
-./gdrive about
-#Download ImageNet dataset
-wget https://data.mendeley.com/public-files/datasets/jctsfj2sfn/files/148dd4e7-636b-404b-8a3c-6938158bc2c0/file_downloaded && \
-unzip file_downloaded
 # splitfolders --output ChestX --ratio .8 .1 .1 --move \
 # -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
 
