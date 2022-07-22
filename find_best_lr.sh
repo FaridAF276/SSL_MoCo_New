@@ -45,7 +45,7 @@ python find_lr.py \
 --nb_value 5 \
 --size_crop 32 \
 --aug_plus \
---batch_size=16 \
+--batch_size=2048 \
 --bn-splits=1 \
 --results-dir=lr_find \
 --dataset=folder \
