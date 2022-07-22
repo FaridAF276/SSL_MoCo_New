@@ -24,7 +24,7 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 time python pre_train.py \
 --epochs 1 \
 --batch_size 16 \
---lr 0.6 \
+--lr 1.0 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "imagenet" \
@@ -35,7 +35,7 @@ touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 1 \
 --batch_size 16 \
---lr 0.6 \
+--lr 1.0 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
