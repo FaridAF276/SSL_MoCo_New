@@ -55,14 +55,14 @@ python find_lr.py \
 
 python find_lr.py \
 --lr_min=0.5 --lr_max=1 --epochs=5 \
---batch_size=16 \
+--batch_size=2048 \
 --bn-splits=1 \
 --results-dir=lr_find \
 --dataset=stl10
 
 # python find_lr.py \
 # --lr_min=0.5 --lr_max=1 --epochs=5 \
-# --batch_size=16 \
+# --batch_size=4096 \
 # --bn-splits=1 \
 # --results-dir=lr_find \
 # --dataset=cifar10
