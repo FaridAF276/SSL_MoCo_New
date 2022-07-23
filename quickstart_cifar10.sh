@@ -52,4 +52,4 @@ time python linear_eval.py \
 
 zip -r cifar10_dowstr.zip MoCo_eval_checkpoints
 cd
-./gdrive upload cifar10_dowstr.zip
+./gdrive upload SSL_MoCo_New/cifar10_dowstr.zip
