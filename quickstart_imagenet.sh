@@ -1,15 +1,15 @@
 #!/bin/bash
 set -e
 
-# cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key; && \
-# wget -nc https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast; && \
+# cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key; \
+# wget -nc https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast; \
 # ./vast start instance ${VAST_CONTAINERLABEL:2} && \
 # bash -e SSL_MoCo_New/quickstart_imagenet.sh && \
 # ./vast stop instance ${VAST_CONTAINERLABEL:2}
 cd SSL_MoCo_New
 #shell script
 #Download ImageNet dataset
-gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip -n tiny_imagenet_200.zip
+gdown --fuzzy https://drive.google.com/file/d/1_dRbJEpMH7436l8aU4xrGHcFIE9i5TX7/view?usp=sharing && unzip -n tiny_imagenet_200.zip
 #Create directories for train et eval models
 mkdir -p MoCo_train_checkpoints && \
 mkdir -p MoCo_eval_checkpoints
