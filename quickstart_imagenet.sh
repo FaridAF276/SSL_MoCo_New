@@ -18,8 +18,8 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 # #Launch training process
 #launch one epoch to see if everything is working fine
 time python pre_train.py \
---epochs 1 \
---batch_size 16 \
+--epochs 50 \
+--batch_size 512 \
 --lr 1.0 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -27,12 +27,12 @@ time python pre_train.py \
 --cos \
 --size_crop 32 \
 --knn-k 4000 \
---moco-k 8192 \
+--moco-k 4096 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
 --epochs 1 \
---batch_size 16 \
+--batch_size 512 \
 --lr 1.0 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
