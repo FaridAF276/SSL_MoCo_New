@@ -29,7 +29,7 @@ class TrainUtils:
         with open(os.path.join(self.path,'config.yml'), 'w') as file:
             documents = yaml.dump(args_dict, file)
         
-        logging.basicConfig(filename=os.path.join(self.path, 'training.log'), level=logging.DEBUG)
+        logging.basicConfig(filename=os.path.join(self.path, 'training.log'), level=logging.INFO)
         print("\n\n directory: {}".format(self.path))
     
     def train_one_epoch(self, net , data_loader, train_optimizer, epoch, args):
