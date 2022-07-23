@@ -17,6 +17,10 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 #to start from here type this command : tail -n +17 quickstart_chestxray.sh | bash
 # #Launch training process
 #launch one epoch to see if everything is working fine
+time python dataset_preparation.py \
+--dataset_dir imagenet \
+--percentage 0.2 \
+--split_train_test
 time python pre_train.py \
 --epochs 50 \
 --batch_size 512 \
