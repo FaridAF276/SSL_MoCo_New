@@ -27,7 +27,7 @@ time python pre_train.py \
 --cos \
 --size_crop 32 \
 --knn-k 4000 \
---moco-k 1024 \
+--moco-k 512 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
@@ -43,8 +43,8 @@ time python linear_eval.py \
 -pt-ssl
 
 # #Zip the result and upload them to drive
-zip -r imagenet_pretext_1024.zip MoCo_train_checkpoints
-zip -r imagenet_dowstr_1024.zip MoCo_eval_checkpoints
+zip -r imagenet_pretext_512.zip MoCo_train_checkpoints
+zip -r imagenet_dowstr_512.zip MoCo_eval_checkpoints
 cd
-./gdrive upload SSL_MoCo_New/imagenet_pretext_1024.zip
-./gdrive upload SSL_MoCo_New/imagenet_dowstr_1024.zip
+./gdrive upload SSL_MoCo_New/imagenet_pretext_512.zip
+./gdrive upload SSL_MoCo_New/imagenet_dowstr_512.zip
