@@ -85,7 +85,7 @@ def main():
         'lr':[],
         'last_loss': []
     }
-    lr_results=pd.DataFrame(lr_dict)
+    # lr_results=pd.DataFrame(lr_dict)
     file_name="learning_rate_{}_{}.csv".format(args.dataset, args.root_folder)
     for test_lr in lr_values:
         model = ModelMoCo(
@@ -106,7 +106,7 @@ def main():
         lr_dict['dataset'].append(args.dataset)
         lr_dict['dataset_path'].append(args.root_folder)
         lr_dict['last_loss'].append(last_loss)
-    lr_results=pd.DataFrame(lr_dict)
+    lr_results=pd.DataFrame.from_dict(lr_dict, orient='index')
     lr_results.to_csv(file_name)
 
 if __name__ == "__main__":
