@@ -6,7 +6,7 @@ set -e
 # ./vast start instance ${VAST_CONTAINERLABEL:2} && \
 # bash -e SSL_MoCo_New/quickstart_imagenet.sh && \
 # ./vast stop instance ${VAST_CONTAINERLABEL:2}
-
+cd SSL_MoCo_New
 #shell script
 #Download ImageNet dataset
 gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip -n tiny_imagenet_200.zip
@@ -66,12 +66,12 @@ time python linear_eval.py \
 --num_classes 200 \
 -pt-ssl
 
-
 # #Zip the result and upload them to drive
 zip -r imagenet_pretext.zip MoCo_train_checkpoints
 zip -r imagenet_dowstr.zip MoCo_eval_checkpoints
-./gdrive upload imagenet_pretext.zip
-./gdrive upload imagenet_dowstr.zip
+cd
+./gdrive upload SSL_MoCo_New/imagenet_pretext.zip
+./gdrive upload SSL_MoCo_New/imagenet_dowstr.zip
 
 #Lets do that again!
 
@@ -95,4 +95,3 @@ zip -r imagenet_dowstr.zip MoCo_eval_checkpoints
 # rm -rf MoCo_eval_checkpoints
 # cd ~
 # rm -r SSL_MoCo_New
-./vast stop instance ${VAST_CONTAINERLABEL:2}
