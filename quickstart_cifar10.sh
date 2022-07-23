@@ -33,7 +33,7 @@ time python pre_train.py \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 zip -r cifar10_pretext.zip MoCo_train_checkpoints
-./gdrive upload cifar10_pretext.zip
+.~/gdrive upload cifar10_pretext.zip
 time python linear_eval.py \
 --epochs 1 \
 --batch_size 256 \
@@ -49,5 +49,4 @@ time python linear_eval.py \
 # #Zip the result and upload them to drive
 
 zip -r cifar10_dowstr.zip MoCo_eval_checkpoints
-./gdrive upload cifar10_dowstr.zip
-./vast stop instance ${VAST_CONTAINERLABEL:2}
+.~/gdrive upload cifar10_dowstr.zip
