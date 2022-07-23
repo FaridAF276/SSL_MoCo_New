@@ -24,7 +24,7 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 # #Launch training process
 time python pre_train.py \
 --epochs 1 \
---batch_size 16 \
+--batch_size 2048 \
 --lr 0.01 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -37,7 +37,7 @@ zip -r cifar10_pretext.zip MoCo_train_checkpoints
 ./gdrive upload cifar10_pretext.zip
 time python linear_eval.py \
 --epochs 1 \
---batch_size 16 \
+--batch_size 2048 \
 --lr 0.01 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
