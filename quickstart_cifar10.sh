@@ -31,7 +31,7 @@ time python pre_train.py \
 --cos \
 --knn-k 4000 \
 --size_crop 32 \
---moco-k 4096 \
+--moco_k 4096 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 zip -r cifar10_4096_pretext.zip MoCo_train_checkpoints
