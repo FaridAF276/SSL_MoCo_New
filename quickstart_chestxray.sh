@@ -34,6 +34,7 @@ time python pre_train.py \
 --root_folder "pretext" \
 --cos \
 --knn-k 4000 \
+--moco-k 8192 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 zip -r chest_pretext.zip MoCo_train_checkpoints

@@ -25,7 +25,9 @@ time python pre_train.py \
 --dataset "folder" \
 --root_folder "imagenet" \
 --cos \
+--size_crop 32 \
 --knn-k 4000 \
+--moco-k 8192 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
