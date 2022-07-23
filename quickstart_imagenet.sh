@@ -39,32 +39,6 @@ time python linear_eval.py \
 --cos \
 --num_classes 200 \
 -pt-ssl
-rm -rf MoCo_train_checkpoints
-rm -rf MoCo_eval_checkpoints
-#launch the real training
-
-time python pre_train.py \
---epochs 200 \
---batch_size 16 \
---lr 0.6 \
---results-dir "MoCo_train_checkpoints/" \
---dataset "folder" \
---root_folder "imagenet" \
---cos \
---knn-k 4000 \
---bn-splits 1
-touch MoCo_train_checkpoints/linear_eval.log
-time python linear_eval.py \
---epochs 200 \
---batch_size 16 \
---lr 0.6 \
---model-dir "MoCo_train_checkpoints/" \
---dataset-ft "folder" \
---results_dir "MoCo_eval_checkpoints/" \
---root_folder "imagenet" \
---cos \
---num_classes 200 \
--pt-ssl
 
 # #Zip the result and upload them to drive
 zip -r imagenet_pretext.zip MoCo_train_checkpoints
@@ -72,26 +46,3 @@ zip -r imagenet_dowstr.zip MoCo_eval_checkpoints
 cd
 ./gdrive upload SSL_MoCo_New/imagenet_pretext.zip
 ./gdrive upload SSL_MoCo_New/imagenet_dowstr.zip
-
-#Lets do that again!
-
-# time python pre_train.py \
-# --epochs 200 \
-# --batch-size 512 \
-# --results-dir "MoCo_train_checkpoints/" \
-# --dataset "stl10"
-# touch MoCo_eval_checkpoints/linear_eval.log
-# time python linear_eval.py \
-# --epochs 200 \
-# --model-dir "MoCo_train_checkpoints/" \
-# --dataset-ft "stl10" \
-# --results_dir "MoCo_eval_checkpoints/" \
-# -pt-ssl
-# zip -r stl10_pretext.zip MoCo_train_checkpoints
-# zip -r stl10_dowstr.zip MoCo_eval_checkpoints
-# ./gdrive upload stl10_pretext.zip
-# ./gdrive upload stl10_dowstr.zip
-# rm -rf MoCo_train_checkpoints
-# rm -rf MoCo_eval_checkpoints
-# cd ~
-# rm -r SSL_MoCo_New
