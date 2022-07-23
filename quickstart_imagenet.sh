@@ -9,7 +9,7 @@ set -e
 
 #shell script
 #Download ImageNet dataset
-gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip
+gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip -n tiny_imagenet_200.zip
 #Create directories for train et eval models
 mkdir -p MoCo_train_checkpoints && \
 mkdir -p MoCo_eval_checkpoints
