@@ -1,6 +1,14 @@
 #!/bin/bash
-cd SSL_MoCo_New
 
+'''
+cat ~/.ssh/authorized_keys | md5sum | awk '{print $1}' > ssh_key_hv; echo -n $VAST_CONTAINERLABEL | md5sum | awk '{print $1}' > instance_id_hv; head -c -1 -q ssh_key_hv instance_id_hv > ~/.vast_api_key; && \
+wget -nc https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast; chmod +x vast; && \
+./vast start instance ${VAST_CONTAINERLABEL:2} && \
+bash -e SSL_MoCo_New/quickstart_chestrxray.sh && \
+./vast stop instance ${VAST_CONTAINERLABEL:2}
+'''
+cd SSL_MoCo_New
+wget -nc 
 #Around 5 GB used
 # splitfolders --output ChestX --ratio .8 .1 .1 --move \
 # -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
@@ -19,7 +27,7 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 # #Launch training process
 time python pre_train.py \
 --epochs 1 \
---batch_size 16 \
+--batch_size 32 \
 --lr 0.012 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -29,10 +37,10 @@ time python pre_train.py \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 zip -r chest_pretext.zip MoCo_train_checkpoints
-./gdrive upload chest_pretext.zip
+.~/gdrive upload chest_pretext.zip
 time python linear_eval.py \
 --epochs 1 \
---batch_size 16 \
+--batch_size 32 \
 --lr 0.012 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
@@ -45,5 +53,4 @@ time python linear_eval.py \
 # #Zip the result and upload them to drive
 
 zip -r chest_dowstr.zip MoCo_eval_checkpoints
-./gdrive upload chest_dowstr.zip
-./vast stop instance ${VAST_CONTAINERLABEL:2}
+.~/gdrive upload chest_dowstr.zip
