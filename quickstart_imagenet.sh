@@ -11,8 +11,8 @@ set -e
 #Download ImageNet dataset
 gdown --fuzzy https://drive.google.com/file/d/1NeBMqfrgLPJcb6_w9-2QZ7ZgYeSzG__u/view?usp=sharing && unzip tiny_imagenet_200.zip
 #Create directories for train et eval models
-mkdir MoCo_train_checkpoints && \
-mkdir MoCo_eval_checkpoints
+mkdir -p MoCo_train_checkpoints && \
+mkdir -p MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 #to start from here type this command : tail -n +17 quickstart_chestxray.sh | bash
 # #Launch training process

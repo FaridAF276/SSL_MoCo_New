@@ -17,13 +17,13 @@ time python dataset_preparation.py \
 # tail -n +17 quickstart_chestxray.sh | bash
 
 #Create directories for train et eval models
-mkdir MoCo_train_checkpoints && \
-mkdir MoCo_eval_checkpoints
+mkdir -p MoCo_train_checkpoints && \
+mkdir -p MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 # #Launch training process
 time python pre_train.py \
 --epochs 1 \
---batch_size 1024 \
+--batch_size 512 \
 --lr 0.01 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -36,7 +36,7 @@ zip -r cifar10_pretext.zip MoCo_train_checkpoints
 ./gdrive upload cifar10_pretext.zip
 time python linear_eval.py \
 --epochs 1 \
---batch_size 1024 \
+--batch_size 512 \
 --lr 0.01 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
