@@ -10,8 +10,8 @@
 cd SSL_MoCo_New
 wget -nc https://md-datasets-public-files-prod.s3.eu-west-1.amazonaws.com/898720e7-9fcd-49f0-87ba-08c979e6f35e && unzip -n COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
 #Around 5 GB used
-# splitfolders --output ChestX --ratio .8 .1 .1 --move \
-# -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
+splitfolders --output ChestX --ratio .8 .1 .1 --move \
+-- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
 
 time python dataset_preparation.py \
 --dataset_dir COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset \
@@ -38,7 +38,9 @@ time python pre_train.py \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 zip -r chest_pretext.zip MoCo_train_checkpoints
-.~/gdrive upload chest_pretext.zip
+cd
+/gdrive upload SSL_MoCo_New/chest_pretext.zip
+cd SSL_MoCo_New
 time python linear_eval.py \
 --epochs 1 \
 --batch_size 32 \
@@ -54,4 +56,5 @@ time python linear_eval.py \
 # #Zip the result and upload them to drive
 
 zip -r chest_dowstr.zip MoCo_eval_checkpoints
-.~/gdrive upload chest_dowstr.zip
+cd
+./gdrive SSL_MoCo_New/upload chest_dowstr.zip

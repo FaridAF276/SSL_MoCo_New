@@ -31,12 +31,12 @@ time python pre_train.py \
 --cos \
 --knn-k 4000 \
 --size_crop 32 \
---moco-k 8192 \
+--moco-k 4096 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
-zip -r cifar10_8192_pretext.zip MoCo_train_checkpoints
+zip -r cifar10_4096_pretext.zip MoCo_train_checkpoints
 cd 
-./gdrive upload SSL_MoCo_New/cifar10_8192_pretext.zip
+./gdrive upload SSL_MoCo_New/cifar10_4096_pretext.zip
 cd SSL_MoCo_New
 time python linear_eval.py \
 --epochs 1 \
@@ -52,6 +52,6 @@ time python linear_eval.py \
 
 # #Zip the result and upload them to drive
 
-zip -r cifar10_8192_dowstr.zip MoCo_eval_checkpoints
+zip -r cifar10_4096_dowstr.zip MoCo_eval_checkpoints
 cd
-./gdrive upload SSL_MoCo_New/cifar10_8192_dowstr.zip
+./gdrive upload SSL_MoCo_New/cifar10_4096_dowstr.zip
