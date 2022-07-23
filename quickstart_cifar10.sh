@@ -35,6 +35,7 @@ touch MoCo_train_checkpoints/linear_eval.log
 zip -r cifar10_pretext.zip MoCo_train_checkpoints
 cd 
 ./gdrive upload cifar10_pretext.zip
+cd SSL_MoCo_New
 time python linear_eval.py \
 --epochs 1 \
 --batch_size 256 \
