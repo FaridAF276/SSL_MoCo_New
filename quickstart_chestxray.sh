@@ -26,7 +26,7 @@ mkdir -p MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 # #Launch training process
 time python pre_train.py \
---epochs 1 \
+--epochs 20 \
 --batch_size 64 \
 --lr 0.012 \
 --results-dir "MoCo_train_checkpoints/" \
