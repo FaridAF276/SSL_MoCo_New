@@ -25,6 +25,7 @@ time python pre_train.py \
 --lr 0.01 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
+--aug_plus \
 --root_folder "pretext" \
 --cos \
 --knn-k 4000 \
