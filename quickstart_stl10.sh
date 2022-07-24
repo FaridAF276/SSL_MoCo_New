@@ -28,6 +28,7 @@ time python pre_train.py \
 --aug_plus \
 --root_folder "pretext" \
 --cos \
+--patience 7 \
 --knn-k 4000 \
 --size_crop 32 \
 --moco-k 4096 \
