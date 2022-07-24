@@ -6,7 +6,7 @@
 # bash -e SSL_MoCo_New/quickstart_stl10.sh && \
 # ./vast stop instance ${VAST_CONTAINERLABEL:2}
 cd SSL_MoCo_New
-gdown --fuzzy https://drive.google.com/file/d/1B0GLPjsXgtWLhV5SvBT1Kti1QHKWql2t/view?usp=sharing && unzip stl10.zip -d stl10
+gdown --fuzzy https://drive.google.com/file/d/1B0GLPjsXgtWLhV5SvBT1Kti1QHKWql2t/view?usp=sharing && unzip -n stl10.zip -d stl10
 rm -rf stl10/unlabelled/
 time python dataset_preparation.py \
 --dataset_dir stl10 \
