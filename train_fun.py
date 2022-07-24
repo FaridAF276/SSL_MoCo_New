@@ -11,6 +11,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import torch.nn.functional as F
 import yaml
+from earlystop import EarlyStopping
 
 
 class TrainUtils:
@@ -23,6 +24,7 @@ class TrainUtils:
         self.test_loader = test_loader
         self.writer = SummaryWriter() #auto creates runs/Apr07_18-01-17_d1007 DIR
         self.path = os.path.join(self.args.results_dir)
+        self.EarlStop = EarlyStopping(patience=5, verbose=True)
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
@@ -170,7 +172,10 @@ class TrainUtils:
             last_loss=train_loss
             logging.info("Epoch: {}\ttrain_loss: {:.3f}\tAcc@1: {:.3f}\tAcc@5: {:.3f}".format(epoch,train_loss,self.top1[0], self.top5[0]))
             torch.save({'epoch': epoch, 'state_dict': self.model.state_dict(), 'optimizer' : self.optimizer.state_dict(),}, os.path.join(self.args.results_dir,'model.pth'))
-        
+            self.EarlStop(train_loss, self.model)
+            if self.EarlStop.early_stop:
+                print("Model not improving, stopping training")
+                break;
         logging.info(f"Model, metadata and training log has been saved at {self.path}.")
         return last_loss
 
