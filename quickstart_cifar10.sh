@@ -22,7 +22,7 @@ mkdir -p MoCo_eval_checkpoints
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 # #Launch training process
 time python pre_train.py \
---epochs 200 \
+--epochs 400 \
 --batch_size 256 \
 --lr 0.01 \
 --results-dir "MoCo_train_checkpoints/" \
@@ -34,12 +34,8 @@ time python pre_train.py \
 --moco-k 4096 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
-zip -r cifar10_4096_pretext.zip MoCo_train_checkpoints
-cd 
-./gdrive upload SSL_MoCo_New/cifar10_4096_pretext.zip
-cd SSL_MoCo_New
 time python linear_eval.py \
---epochs 200 \
+--epochs 1 \
 --batch_size 256 \
 --lr 0.01 \
 --model-dir "MoCo_train_checkpoints/" \
@@ -51,7 +47,8 @@ time python linear_eval.py \
 -pt-ssl
 
 # #Zip the result and upload them to drive
-
+zip -r cifar10_4096_pretext.zip MoCo_train_checkpoints
 zip -r cifar10_4096_dowstr.zip MoCo_eval_checkpoints
 cd
 ./gdrive upload SSL_MoCo_New/cifar10_4096_dowstr.zip
+./gdrive upload SSL_MoCo_New/cifar10_4096_pretext.zip
