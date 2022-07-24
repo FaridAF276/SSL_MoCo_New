@@ -36,7 +36,7 @@ time python pre_train.py \
 --knn-k 4000 \
 --chest_aug \
 --size_crop 224 \
---moco-k 4096 \
+--moco-k 8192 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
@@ -52,8 +52,8 @@ time python linear_eval.py \
 -pt-ssl
 
 # #Zip the result and upload them to drive
-zip -r chest_pretext_4096.zip MoCo_train_checkpoints
-zip -r chest_dowstr_4096.zip MoCo_eval_checkpoints
+zip -r chest_pretext_8192.zip MoCo_train_checkpoints
+zip -r chest_dowstr_8192.zip MoCo_eval_checkpoints
 cd
-./gdrive upload SSL_MoCo_New/chest_dowstr_4096.zip
-./gdrive upload SSL_MoCo_New/chest_pretext_4096.zip
+./gdrive upload SSL_MoCo_New/chest_dowstr_8192.zip
+./gdrive upload SSL_MoCo_New/chest_pretext_8192.zip
