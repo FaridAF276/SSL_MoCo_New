@@ -28,7 +28,7 @@ class EarlyStopping:
         self.path = path
         self.trace_func = trace_func
     def __call__(self, val_loss, model, optimizer, args, epoch):
-        self.epoch+=1
+        # self.epoch+=1
         score = -val_loss
 
         if self.best_score is None:
