@@ -52,8 +52,8 @@ time python linear_eval.py \
 -pt-ssl
 
 # #Zip the result and upload them to drive
-zip -r chest_pretext.zip MoCo_train_checkpoints
-zip -r chest_dowstr.zip MoCo_eval_checkpoints
+zip -r chest_pretext_4096.zip MoCo_train_checkpoints
+zip -r chest_dowstr_4096.zip MoCo_eval_checkpoints
 cd
-./gdrive upload SSL_MoCo_New/chest_dowstr.zip
-./gdrive upload SSL_MoCo_New/chest_pretext.zip
+./gdrive upload SSL_MoCo_New/chest_dowstr_4096.zip
+./gdrive upload SSL_MoCo_New/chest_pretext_4096.zip
