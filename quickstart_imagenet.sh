@@ -22,7 +22,7 @@ time python dataset_preparation.py \
 --percentage 0.2 \
 --split_train_test
 time python pre_train.py \
---epochs 50 \
+--epochs 400 \
 --batch_size 512 \
 --lr 1.0 \
 --results-dir "MoCo_train_checkpoints/" \

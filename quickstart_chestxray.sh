@@ -36,7 +36,7 @@ time python pre_train.py \
 --knn-k 4000 \
 --chest_aug \
 --size_crop 224 \
---moco-k 8192 \
+--moco-k 16384 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
