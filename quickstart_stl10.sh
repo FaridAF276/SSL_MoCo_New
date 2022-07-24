@@ -21,8 +21,8 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 # #Launch training process
 time python pre_train.py \
 --epochs 20 \
---batch_size 256 \
---lr 0.01 \
+--batch_size 512 \
+--lr 0.1 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --aug_plus \
