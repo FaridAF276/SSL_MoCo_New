@@ -163,7 +163,7 @@ class TrainUtils:
         last_loss=0
         epoch_start = 1
         self.n_iter= 0
-        self.EarlStop(patience=5, verbose=True)
+        Early_stop=EarlyStopping(patience=5, verbose=True)
         if(self.args.resume is ''):
             logging.info(f"Start MoCo training for {self.args.epochs} epochs.")
 
@@ -172,8 +172,8 @@ class TrainUtils:
             last_loss=train_loss
             logging.info("Epoch: {}\ttrain_loss: {:.3f}\tAcc@1: {:.3f}\tAcc@5: {:.3f}".format(epoch,train_loss,self.top1[0], self.top5[0]))
             # torch.save({'epoch': epoch, 'state_dict': self.model.state_dict(), 'optimizer' : self.optimizer.state_dict(),}, os.path.join(self.args.results_dir,'model.pth'))
-            self.EarlStop(train_loss, self.model, self.optimizer, self.args, epoch)
-            if self.EarlStop.early_stop:
+            Early_stop(train_loss, self.model, self.optimizer, self.args, epoch)
+            if Early_stop.early_stop:
                 print("Model not improving, stopping training")
                 break;
         logging.info(f"Model, metadata and training log has been saved at {self.path}.")
