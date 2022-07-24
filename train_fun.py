@@ -163,7 +163,7 @@ class TrainUtils:
         last_loss=0
         epoch_start = 1
         self.n_iter= 0
-        Early_stop=EarlyStopping(patience=5, verbose=True)
+        Early_stop=EarlyStopping(patience=self.args.patience, verbose=True)
         if(self.args.resume is ''):
             logging.info(f"Start MoCo training for {self.args.epochs} epochs.")
 
