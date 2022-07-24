@@ -55,5 +55,5 @@ time python linear_eval.py \
 zip -r chest_pretext.zip MoCo_train_checkpoints
 zip -r chest_dowstr.zip MoCo_eval_checkpoints
 cd
-./gdrive SSL_MoCo_New/upload chest_dowstr.zip
+./gdrive upload SSL_MoCo_New/chest_dowstr.zip
 ./gdrive upload SSL_MoCo_New/chest_pretext.zip
