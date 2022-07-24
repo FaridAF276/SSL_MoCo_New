@@ -48,5 +48,5 @@ time python linear_eval.py \
 zip -r stl10_pretext_4096.zip MoCo_train_checkpoints
 zip -r stl10_dowstr_4096.zip MoCo_eval_checkpoints
 cd
-./gdrive upload stl10_pretext_4096.zip
-./gdrive upload stl10_dowstr_4096.zip
+./gdrive upload SSL_MoCo_New/stl10_pretext_4096.zip
+./gdrive upload SSL_MoCo_New/stl10_dowstr_4096.zip
