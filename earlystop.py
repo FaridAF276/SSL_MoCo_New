@@ -29,7 +29,7 @@ class EarlyStopping:
         self.trace_func = trace_func
     def __call__(self, val_loss, model, optimizer, args, epoch):
         # self.epoch+=1
-        score = val_loss
+        score = -val_loss
 
         if self.best_score is None:
             self.best_score = score
@@ -43,6 +43,7 @@ class EarlyStopping:
             self.best_score = score
             # self.save_checkpoint(val_loss, model)
             self.save_checkpoint(val_loss, model=model, optimizer=optimizer, epoch=epoch, args=args)
+            print("New best loss:\t", self.best_score)
             self.counter = 0
 
     def save_checkpoint(self, val_loss, model, optimizer, epoch, args):
