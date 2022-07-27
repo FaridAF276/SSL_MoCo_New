@@ -27,7 +27,7 @@ time python pre_train.py \
 --dataset "folder" \
 --aug_plus \
 --root_folder "pretext" \
---cos \
+# --cos \
 --patience 7 \
 --knn-k 4000 \
 --size_crop 32 \
