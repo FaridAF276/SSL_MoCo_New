@@ -171,6 +171,7 @@ class TrainUtils:
             train_loss = self.train_one_epoch(self.model, self.train_loader, self.optimizer, epoch, self.args)
             last_loss=train_loss
             logging.info("Epoch: {}\ttrain_loss: {:.3f}\tAcc@1: {:.3f}\tAcc@5: {:.3f}".format(epoch,train_loss,self.top1[0], self.top5[0]))
+            print("\nAcc@1:\t", self.top1[0],"\tAcc@5:\t" ,self.top5[0])
             # torch.save({'epoch': epoch, 'state_dict': self.model.state_dict(), 'optimizer' : self.optimizer.state_dict(),}, os.path.join(self.args.results_dir,'model.pth'))
             Early_stop(train_loss, self.model, self.optimizer, self.args, epoch)
             if Early_stop.early_stop:

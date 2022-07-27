@@ -32,7 +32,8 @@ time python pre_train.py \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "pretext" \
---cos \
+# --cos \
+--moco-dim 256
 --knn-k 4000 \
 --chest_aug \
 --size_crop 224 \
