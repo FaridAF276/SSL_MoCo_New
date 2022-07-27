@@ -28,7 +28,7 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 time python pre_train.py \
 --epochs 400 \
 --batch_size 64 \
---lr 0.012 \
+--lr 0.12 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "pretext" \
