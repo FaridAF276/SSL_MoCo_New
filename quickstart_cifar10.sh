@@ -26,7 +26,6 @@ time python pre_train.py \
 --dataset "folder" \
 --root_folder "pretext" \
 --cos \
---resume 'MoCo_train_checkpoints/model.pth' \
 --knn-k 4000 \
 --size_crop 32 \
 --moco-k 4096 \
