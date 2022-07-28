@@ -28,11 +28,12 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 time python pre_train.py \
 --epochs 400 \
 --batch_size 64 \
---lr 0.12 \
+--lr 0.06 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "pretext" \
 --moco-dim 256 \
+--cos \
 --knn-k 4000 \
 --chest_aug \
 --size_crop 224 \

@@ -22,7 +22,8 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 time python pre_train.py \
 --epochs 20 \
 --batch_size 512 \
---lr 0.1 \
+--lr 0.06 \
+--cos \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --aug_plus \
@@ -30,6 +31,7 @@ time python pre_train.py \
 --patience 7 \
 --knn-k 4000 \
 --size_crop 32 \
+--knn \
 --moco-k 4096 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
