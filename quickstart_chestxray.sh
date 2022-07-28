@@ -33,7 +33,6 @@ time python pre_train.py \
 --dataset "folder" \
 --root_folder "pretext" \
 --moco-dim 256 \
---resume 'MoCo_train_checkpoints/model.pth' \
 --cos \
 --knn-k 4000 \
 --patience 7 \
