@@ -25,7 +25,7 @@ time python pre_train.py \
 --lr 0.06 \
 --cos \
 --results-dir "MoCo_train_checkpoints/" \
---dataset "folder" \
+--dataset "stl10" \
 --aug_plus \
 --root_folder "pretext" \
 --patience 7 \
