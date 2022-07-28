@@ -27,7 +27,7 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 # #Launch training process
 time python pre_train.py \
 --epochs 400 \
---batch_size 128 \
+--batch_size 64 \
 --lr 0.06 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
@@ -37,7 +37,7 @@ time python pre_train.py \
 --knn-k 4000 \
 --patience 7 \
 --chest_aug \
---size_crop 224 \
+--size_crop 550 \
 --moco-k 16384 \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
