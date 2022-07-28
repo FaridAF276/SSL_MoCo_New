@@ -29,6 +29,7 @@ time python pre_train.py \
 --dataset "folder" \
 --root_folder "imagenet" \
 --cos \
+--patience 7 \
 --size_crop 32 \
 --knn-k 4000 \
 --moco-k 1024 \
