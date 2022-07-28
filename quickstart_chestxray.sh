@@ -15,7 +15,7 @@ splitfolders --output ChestX --ratio .8 .1 .1 --move \
 
 time python dataset_preparation.py \
 --dataset_dir ChestX \
---percentage 0.2 \
+--percentage 0.05 \
 --split_train_test
 #To start from here type this command : 
 # tail -n +17 quickstart_chestxray.sh | bash
