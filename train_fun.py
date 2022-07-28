@@ -150,7 +150,7 @@ class TrainUtils:
         # counts for each class
         one_hot_label = torch.zeros(feature.size(0) * knn_k, classes, device=sim_labels.device)
         # [B*K, C]
-        print(sim_labels.view(-1,1))
+        # print(sim_labels.view(-1,1))
         one_hot_label = one_hot_label.scatter(dim=-1, index=sim_labels.view(-1, 1), value=1.0)
         # weighted score ---> [B, C]
         pred_scores = torch.sum(one_hot_label.view(feature.size(0), -1, classes) * sim_weight.unsqueeze(dim=-1), dim=1)
