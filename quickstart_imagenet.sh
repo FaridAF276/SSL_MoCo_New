@@ -24,7 +24,7 @@ time python dataset_preparation.py \
 time python pre_train.py \
 --epochs 400 \
 --batch_size 512 \
---lr 1.0 \
+--lr 0.7 \
 --results-dir "MoCo_train_checkpoints/" \
 --dataset "folder" \
 --root_folder "imagenet" \
