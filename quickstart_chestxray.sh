@@ -35,6 +35,7 @@ time python pre_train.py \
 --moco-dim 256 \
 --cos \
 --knn-k 4000 \
+--patience 7 \
 --chest_aug \
 --size_crop 224 \
 --moco-k 16384 \
