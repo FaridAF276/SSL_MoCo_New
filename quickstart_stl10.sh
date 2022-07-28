@@ -30,6 +30,7 @@ time python pre_train.py \
 --root_folder "pretext" \
 --patience 7 \
 --knn-k 4000 \
+--resume 'MoCo_train_checkpoints/model.pth' \
 --size_crop 32 \
 --moco-k 4096 \
 --bn-splits 1

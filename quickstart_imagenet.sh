@@ -30,6 +30,7 @@ time python pre_train.py \
 --root_folder "imagenet" \
 --cos \
 --patience 7 \
+--resume 'MoCo_train_checkpoints/model.pth' \
 --size_crop 32 \
 --knn-k 4000 \
 --moco-k 1024 \
