@@ -21,7 +21,7 @@ mkdir -p MoCo_eval_checkpoints
 time python linear_eval.py \
 --epochs 100 \
 --batch_size 256 \
---lr 0.1 \
+--lr 2e-3 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \

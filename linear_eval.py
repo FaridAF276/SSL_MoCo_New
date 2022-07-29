@@ -197,7 +197,7 @@ def main():
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
     # schedul= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer, mode="min", factor=0.1, patience=3)
-    schedul=torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=30, gamma=0.1)
+    schedul=torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=30, gamma=0.1, verbose=True)
     criterion = torch.nn.CrossEntropyLoss().cuda()
 #     train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=test_loader, test_loader=test_loader)
 
@@ -219,6 +219,7 @@ def main():
             loss.backward()
             optimizer.step()
         schedul.step(loss)
+        # schedul.print_lr()
         top1_train_accuracy /= (counter + 1)
         top1_accuracy = 0
         top3_accuracy = 0
@@ -240,7 +241,7 @@ def main():
                 break;
         # torch.save({'epoch': epoch, 'state_dict': model.state_dict(), 'optimizer' : optimizer.state_dict(),}, os.path.join(args.results_dir,'model_fine.pth'))
         logging.info("Loss {:.2f}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
-        print("Lr:{:.2f}\t Loss {:.2f}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(schedul.get_last_lr(), loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
+        print("Lr:{:.2f}\t Loss {:.2f}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(args.lr, loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
 
 
 if __name__ == "__main__":
