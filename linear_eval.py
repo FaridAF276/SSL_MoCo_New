@@ -231,7 +231,7 @@ def main():
         top1_accuracy /= (counter + 1)
         top3_accuracy /= (counter + 1)
         torch.save({'epoch': epoch, 'state_dict': model.state_dict(), 'optimizer' : optimizer.state_dict(),}, os.path.join(args.results_dir,'model_fine.pth'))
-        logging.info("Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
+        logging.info("Loss {:.2f}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
         print("Loss {}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
 
 
