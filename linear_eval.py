@@ -215,7 +215,7 @@ def main():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            schedul.step(loss)
+        schedul.step(loss)
 
         top1_train_accuracy /= (counter + 1)
         top1_accuracy = 0
