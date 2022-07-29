@@ -25,7 +25,7 @@ time python linear_eval.py \
 --batch_size 256 \
 --lr 0.01 \
 --model-dir "MoCo_train_checkpoints/" \
---dataset-ft "stl10" \
+--dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
 --cos \
