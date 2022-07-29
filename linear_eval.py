@@ -98,7 +98,7 @@ def main():
     args = parser.parse_args()
     device = 'cuda' if torch.cuda.is_available() else 'cpu' #update args.device
     print("Using device:", device) 
-    logging.basicConfig(filename=os.path.join(args.model_dir, 'linear_eval.log'), level=logging.DEBUG)
+    logging.basicConfig(filename=os.path.join(args.model_dir, 'linear_eval.log'), level=logging.INFO)
     
     if not args.pre_train_ssl: #use ImageNet pretrained network
         pass

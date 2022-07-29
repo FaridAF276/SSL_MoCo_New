@@ -5,7 +5,7 @@ cd SSL_MoCo_New
 gdown --fuzzy -O temp.zip https://drive.google.com/file/d/1U0Kdy1N4DyzY6p3B2gODdSJJoMyTuFlz/view?usp=sharing 
 unzip temp.zip
 ##Download model
-
+mkdir -p MoCo_eval_checkpoints
 time python linear_eval.py \
 --epochs 10 \
 --batch_size 256 \
