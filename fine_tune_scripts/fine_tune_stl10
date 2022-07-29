@@ -8,7 +8,7 @@ cd SSL_MoCo_New
 ##Download pretrained model
 gdown --fuzzy -O temp.zip https://drive.google.com/file/d/1OWweZjrJklhQG6NITTB-KlDDPpxGjl3L/view?usp=sharing
 unzip -n temp.zip
-gdown --fuzzy -O stl10.zip https://drive.google.com/file/d/1ny6vBH54X0qV07EsNhgddHFGYgoROswy/view?usp=sharing && unzip -n stl10.zip
+gdown --fuzzy -O stl10.zip https://drive.google.com/file/d/1ny6vBH54X0qV07EsNhgddHFGYgoROswy/view?usp=sharing && unzip -n -d stl10
 mkdir -p MoCo_eval_checkpoints
 time python dataset_preparation.py \
 --dataset_dir stl10 \
