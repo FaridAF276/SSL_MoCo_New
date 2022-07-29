@@ -22,6 +22,7 @@ parser.add_argument('-pt-ssl','--pre-train-ssl', action='store_true', \
         Default pt_ssl=False, i.e, ImageNet pretrained network. ')
 parser.add_argument('--model-dir', default='', type=str, metavar='PATH', help='path to directory where pretrained model is saved')
 parser.add_argument('--epochs', '-e', default=100, type=int, metavar='N', help='number of epochs')
+parser.add_argument('--patience', '-e', default=7, type=int, help='patience for the early stopping')
 parser.add_argument('--dataset-ft', type=str, help='name of the dataset to fine tune the pretrained model on')
 parser.add_argument('--results_dir', type=str, help='name of the path to save the fine tuned model on')
 parser.add_argument('--batch_size',default=256, type=int, help='Number of images in the each batch')
