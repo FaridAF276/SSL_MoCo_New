@@ -2,8 +2,16 @@
 
 cd SSL_MoCo_New
 ##Download pretrained model
-gdown --fuzzy -O temp.zip https://drive.google.com/file/d/1U0Kdy1N4DyzY6p3B2gODdSJJoMyTuFlz/view?usp=sharing 
-unzip temp.zip
+gdown --fuzzy -O temp.zip https://drive.google.com/file/d/1JTRGAKh9vAcp6ZBmdnJ1riWq03pXgnKV/view?usp=sharing
+unzip -n temp.zip
+splitfolders --output ChestX --ratio .8 .1 .1 --move \
+-- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
+
+time python dataset_preparation.py \
+--dataset_dir ChestX \
+--percentage 0.05 \
+--split_train_test
+python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 ##Download model
 mkdir -p MoCo_eval_checkpoints
 time python linear_eval.py \
