@@ -9,7 +9,7 @@ set -e
 cd SSL_MoCo_New
 #shell script
 #Download ImageNet dataset
-gdown --fuzzy https://drive.google.com/file/d/1_dRbJEpMH7436l8aU4xrGHcFIE9i5TX7/view?usp=sharing && unzip -n tiny-imagenet-200.zip
+gdown --fuzzy -O imagenet.zip https://drive.google.com/file/d/1_dRbJEpMH7436l8aU4xrGHcFIE9i5TX7/view?usp=sharing && unzip -n imagenet.zip
 #Create directories for train et eval models
 mkdir -p MoCo_train_checkpoints && \
 mkdir -p MoCo_eval_checkpoints
