@@ -26,6 +26,7 @@ time python pre_train.py \
 --dataset "folder" \
 --root_folder "pretext" \
 --cos \
+--patience 7 \
 --knn-k 4000 \
 --size_crop 32 \
 --moco-k 4096 \
