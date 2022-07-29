@@ -9,6 +9,7 @@ cd SSL_MoCo_New
 ##Download pretrained model
 gdown --fuzzy -O temp.zip https://drive.google.com/file/d/1JTRGAKh9vAcp6ZBmdnJ1riWq03pXgnKV/view?usp=sharing
 unzip -n temp.zip
+wget -nc https://md-datasets-public-files-prod.s3.eu-west-1.amazonaws.com/898720e7-9fcd-49f0-87ba-08c979e6f35e -O chest.zip && unzip -n chest.zip
 splitfolders --output ChestX --ratio .8 .1 .1 --move \
 -- COVID19_Pneumonia_Normal_Chest_Xray_PA_Dataset
 
