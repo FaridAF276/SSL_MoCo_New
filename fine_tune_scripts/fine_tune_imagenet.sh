@@ -13,7 +13,7 @@ mkdir -p MoCo_eval_checkpoints
 
 time python dataset_preparation.py \
 --dataset_dir imagenet \
---percentage 0.05 \
+--percentage 0.3 \
 --split_train_test
 python -c "import torch; import torchvision; print('\n Torch version:\t', torch.__version__, '\n Torchvision version:\t', torchvision.__version__)"
 ##Download model

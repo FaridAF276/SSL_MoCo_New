@@ -204,7 +204,6 @@ def main():
     epochs = args.epochs
     for epoch in range(1, epochs+1):
         top1_train_accuracy = 0
-        Early_stop(loss, model, optimizer, args, epoch)
         for counter, (x_batch, y_batch) in enumerate(train_loader):
             x_batch = x_batch.cuda()
             y_batch = y_batch.cuda()
@@ -223,7 +222,7 @@ def main():
         top1_train_accuracy /= (counter + 1)
         top1_accuracy = 0
         top3_accuracy = 0
-
+        Early_stop(loss, model, optimizer, args, epoch)
         for counter, (x_batch, y_batch) in enumerate(test_loader):
             x_batch = x_batch.cuda()
             y_batch = y_batch.cuda()
