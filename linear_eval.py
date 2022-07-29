@@ -12,6 +12,7 @@ from torchvision import datasets
 import argparse
 from  train_fun import TrainUtils
 import logging
+from earlystop import EarlyStopping
 from moco_wrapper import ModelMoCo
 from moco_dataset_generator import FolderPair
 import sys
@@ -198,10 +199,11 @@ def main():
     criterion = torch.nn.CrossEntropyLoss().cuda()
 #     train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=test_loader, test_loader=test_loader)
 
-
+    Early_stop=EarlyStopping(patience=args.patience, verbose=True, path="model_fine.pth")
     epochs = args.epochs
     for epoch in range(1, epochs+1):
         top1_train_accuracy = 0
+        Early_stop(loss, model, optimizer, args, epoch)
         for counter, (x_batch, y_batch) in enumerate(train_loader):
             x_batch = x_batch.cuda()
             y_batch = y_batch.cuda()
@@ -233,7 +235,10 @@ def main():
         
         top1_accuracy /= (counter + 1)
         top3_accuracy /= (counter + 1)
-        torch.save({'epoch': epoch, 'state_dict': model.state_dict(), 'optimizer' : optimizer.state_dict(),}, os.path.join(args.results_dir,'model_fine.pth'))
+        if Early_stop.early_stop:
+                print("Model not improving, stopping training")
+                break;
+        # torch.save({'epoch': epoch, 'state_dict': model.state_dict(), 'optimizer' : optimizer.state_dict(),}, os.path.join(args.results_dir,'model_fine.pth'))
         logging.info("Loss {:.2f}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
         print("Lr:{:.2f}\t Loss {:.2f}\t Epoch {}\tTrain Acc@1 {:.2f}\tTest Acc@1: {:.2f}\tTest Acc@3: {:.2f}".format(args.lr, loss,epoch,top1_train_accuracy.item(),top1_accuracy.item(),top3_accuracy.item()))
 
