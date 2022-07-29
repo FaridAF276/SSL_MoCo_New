@@ -196,7 +196,7 @@ def main():
         assert len(parameters) == 2  # fc.weight, fc.bias
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
-    schedul= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer, mode="min", factor=0.1, patience=2, verbose=True)
+    schedul= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer, mode="min", factor=0.1, patience=2, threshold=1e-1, verbose=True)
     # schedul=torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=15, gamma=0.1, verbose=True)
     criterion = torch.nn.CrossEntropyLoss().cuda()
 #     train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=test_loader, test_loader=test_loader)
