@@ -203,6 +203,7 @@ def main():
     if (not args.cos):
         schedul= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer, mode="min", factor=0.7, patience=2, threshold=8e-2, verbose=True)
         # schedul=torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=15, gamma=0.1, verbose=True)
+        # scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10, eta_min=0)
     criterion = torch.nn.CrossEntropyLoss().cuda()
 #     train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=test_loader, test_loader=test_loader)
 
