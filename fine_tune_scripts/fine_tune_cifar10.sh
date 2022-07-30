@@ -19,8 +19,8 @@ python -c "import torch; import torchvision; print('\n Torch version:\t', torch.
 mkdir -p MoCo_eval_checkpoints
 time python linear_eval.py \
 --epochs 500 \
---batch_size 256 \
---lr 0.06 \
+--batch_size 512 \
+--lr 1e-3 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --patience 7 \
