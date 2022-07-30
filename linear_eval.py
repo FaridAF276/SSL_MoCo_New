@@ -15,6 +15,7 @@ import logging
 from earlystop import EarlyStopping
 from moco_wrapper import ModelMoCo
 from moco_dataset_generator import FolderPair
+import math
 import sys
 parser = argparse.ArgumentParser(description='PyTorch MoCo Linear Eval')
 parser.add_argument('-pt-ssl','--pre-train-ssl', action='store_true', \
@@ -35,7 +36,10 @@ parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
 parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
 args = parser.parse_args()
-
+def cosine_lr(epoch, args):
+    lr=args.lr
+    lr *= 0.5 * (1. + math.cos(math.pi * epoch / args.epochs))
+    return lr
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
     with torch.no_grad():
@@ -196,8 +200,9 @@ def main():
         assert len(parameters) == 2  # fc.weight, fc.bias
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
-    schedul= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer, mode="min", factor=0.7, patience=2, threshold=8e-2, verbose=True)
-    # schedul=torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=15, gamma=0.1, verbose=True)
+    if (not args.cos):
+        schedul= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer, mode="min", factor=0.7, patience=2, threshold=8e-2, verbose=True)
+        # schedul=torch.optim.lr_scheduler.StepLR(optimizer=optimizer, step_size=15, gamma=0.1, verbose=True)
     criterion = torch.nn.CrossEntropyLoss().cuda()
 #     train_ut=TrainUtils(model = model, train_loader= train_loader, optimizer= optimizer, args= args, args_dict=vars(args), memory_loader=test_loader, test_loader=test_loader)
 
@@ -218,7 +223,7 @@ def main():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-        schedul.step(loss)
+        cosine_lr(epoch, args) if args.cos else schedul.step(loss)
         # schedul.print_lr()
         top1_train_accuracy /= (counter + 1)
         top1_accuracy = 0
