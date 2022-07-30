@@ -23,7 +23,7 @@ time python linear_eval.py \
 --lr 1e-3 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
---patience 7 \
+--patience 25 \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
 --cos \

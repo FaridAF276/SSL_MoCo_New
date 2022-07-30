@@ -26,7 +26,7 @@ time python linear_eval.py \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
---patience 25
+--patience 25 \
 --cos \
 --num_classes 10 \
 -pt-ssl
