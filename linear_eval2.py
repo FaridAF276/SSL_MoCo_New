@@ -107,13 +107,6 @@ def main():
     print("Using device:", device) 
     logging.basicConfig(filename=os.path.join(args.model_dir, 'linear_eval.log'), level=logging.INFO)
            # freeze all layers but the last fc
-    for name, param in model.named_parameters():
-        if name not in ['fc.weight', 'fc.bias']:
-            param.requires_grad = False
-    model.fc.weight.data.normal_(mean=0.0, std=0.01)
-    model.fc.bias.data.zero_()
-    parameters = list(filter(lambda p: p.requires_grad, model.parameters()))
-    assert len(parameters) == 2  # fc.weight, fc.bias
     if not args.pre_train_ssl: #use ImageNet pretrained network
         pass
     else: # use SSL pre_trained network
@@ -123,6 +116,13 @@ def main():
             model = torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes).cuda()
         elif config['arch'] == 'resnet50':
             model = torchvision.models.resnet50(pretrained=False, num_classes=args.num_classes).cuda()
+        for name, param in model.named_parameters():
+            if name not in ['fc.weight', 'fc.bias']:
+                param.requires_grad = False
+        model.fc.weight.data.normal_(mean=0.0, std=0.01)
+        model.fc.bias.data.zero_()
+        parameters = list(filter(lambda p: p.requires_grad, model.parameters()))
+        assert len(parameters) == 2  # fc.weight, fc.bias
         checkpoint = torch.load(os.path.join(args.model_dir, 'model.pth'))
         state_dict = checkpoint['state_dict']
         for k in list(state_dict.keys()):
