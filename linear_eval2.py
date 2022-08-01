@@ -36,9 +36,11 @@ parser.add_argument('--cos', action='store_true', help='use cosine lr schedule')
 parser.add_argument('--wd', default=5e-4, type=float, metavar='W', help='weight decay')
 
 args = parser.parse_args()
-def cosine_lr(epoch, args):
+def cosine_lr(optimizer, epoch, args):
     lr=args.lr
     lr *= 0.5 * (1. + math.cos(math.pi * epoch / args.epochs))
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
     return lr
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
