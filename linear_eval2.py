@@ -186,7 +186,7 @@ def main():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-        cosine_lr(epoch, args) if args.cos else schedul.step(loss)
+        cosine_lr(optimizer,epoch, args) if args.cos else schedul.step(loss)
         # schedul.print_lr()
         top1_train_accuracy /= (counter + 1)
         top1_accuracy = 0
