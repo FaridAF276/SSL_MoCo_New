@@ -41,6 +41,7 @@ time python linear_eval.py \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
 --cos \
+--patience 50 \
 --num_classes 10 \
 -pt-ssl
 
