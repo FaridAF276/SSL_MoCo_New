@@ -22,7 +22,7 @@ time python dataset_preparation.py \
 --percentage 0.2 \
 --split_train_test
 time python pre_train.py \
---epochs 400 \
+--epochs 50 \
 --batch_size 512 \
 --lr 0.7 \
 --results-dir "MoCo_train_checkpoints/" \
@@ -37,7 +37,7 @@ time python pre_train.py \
 --bn-splits 1
 touch MoCo_train_checkpoints/linear_eval.log
 time python linear_eval.py \
---epochs 1 \
+--epochs 50 \
 --batch_size 512 \
 --lr 1.0 \
 --model-dir "MoCo_train_checkpoints/" \
