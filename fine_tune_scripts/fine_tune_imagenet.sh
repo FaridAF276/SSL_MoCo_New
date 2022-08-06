@@ -21,12 +21,11 @@ mkdir -p MoCo_eval_checkpoints
 time python linear_eval.py \
 --epochs 300 \
 --batch_size 256 \
---lr 2e-3 \
+--lr 1e-3 \
 --model-dir "MoCo_train_checkpoints/" \
 --dataset-ft "folder" \
 --results_dir "MoCo_eval_checkpoints/" \
 --root_folder "downstream" \
---cos \
 --patience 25 \
 --num_classes 200 \
 -pt-ssl
