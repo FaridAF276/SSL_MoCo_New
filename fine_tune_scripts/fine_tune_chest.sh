@@ -31,3 +31,7 @@ time python linear_eval.py \
 --patience 25 \
 --num_classes 10 \
 -pt-ssl
+
+zip -r chest_finetune.zip MoCo_train_checkpoints MoCo_eval_checkpoints
+cd
+./gdrive upload SSL_MoCo_New/chest_finetune.zip
